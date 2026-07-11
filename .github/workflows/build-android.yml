@@ -39,8 +39,11 @@ jobs:
 
       - name: Update target SDK and version code
         run: |
-          sed -i "s/targetSdkVersion.*/targetSdkVersion 35/" android/variables.gradle
+          cat android/variables.gradle
+          sed -i "s/targetSdkVersion = .*/targetSdkVersion = 35/" android/variables.gradle
           sed -i "s/versionCode 1/versionCode 2/" android/app/build.gradle
+          echo "=== After fix ==="
+          cat android/variables.gradle
 
       - name: Decode keystore
         run: echo "$KEYSTORE_B64" | base64 --decode > android/app/thep-release-key.jks
