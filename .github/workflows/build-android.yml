@@ -34,7 +34,10 @@ jobs:
           cp index.html www/
       - name: Sync Capacitor
         run: npx cap sync android
-
+      - name: Update target SDK to 35
+        run: |
+          sed -i 's/targetSdk = 33/targetSdk = 35/' android/app/build.gradle
+          sed -i 's/targetSdkVersion 33/targetSdkVersion 35/' android/app/build.gradle
       - name: Decode keystore
         run: echo "$KEYSTORE_B64" | base64 --decode > android/app/thep-release-key.jks
         env:
