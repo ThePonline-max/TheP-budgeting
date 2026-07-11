@@ -39,10 +39,14 @@ jobs:
 
       - name: Update target SDK and version code
         run: |
-          sed -i 's/targetSdk = 33/targetSdk = 35/' android/app/build.gradle
-          sed -i 's/targetSdkVersion 33/targetSdkVersion 35/' android/app/build.gradle
-          sed -i 's/versionCode = 1/versionCode = 2/' android/app/build.gradle
-          sed -i 's/versionCode 1/versionCode 2/' android/app/build.gradle
+          find android -name "build.gradle*" -exec grep -l "targetSdk" {} \;
+          find android -name "build.gradle*" -exec sed -i 's/targetSdk[[:space:]]*=[[:space:]]*[0-9]*/targetSdk = 35/g' {} \;
+          find android -name "build.gradle*" -exec sed -i 's/targetSdkVersion[[:space:]]*[0-9]*/targetSdkVersion 35/g' {} \;
+          find android -name "build.gradle*" -exec sed -i 's/versionCode[[:space:]]*=[[:space:]]*[0-9]*/versionCode = 2/g' {} \;
+          find android -name "build.gradle*" -exec sed -i 's/versionCode[[:space:]]*[0-9]*/versionCode 2/g' {} \;
+          echo "=== Checking values ==="
+          grep -r "targetSdk" android/ --include="*.gradle*"
+          grep -r "versionCode" android/ --include="*.gradle*"
 
       - name: Decode keystore
         run: echo "$KEYSTORE_B64" | base64 --decode > android/app/thep-release-key.jks
