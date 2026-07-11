@@ -39,39 +39,27 @@ jobs:
 
       - name: Update target SDK and version code
         run: |
-          cat android/variables.gradle
           sed -i "s/targetSdkVersion = .*/targetSdkVersion = 35/" android/variables.gradle
           sed -i "s/versionCode 1/versionCode 2/" android/app/build.gradle
-          echo "=== After fix ==="
-          cat android/variables.gradle
 
-      - name: Decode keystore
-        run: echo "$KEYSTORE_B64" | base64 --decode > android/app/thep-release-key.jks
-        env:
-          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
-
-      - name: Add signing config
-        env:
-          STORE_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_AL: ${{ secrets.KEY_ALIAS }}
-          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          sed -i "/defaultConfig {/i\\
-              signingConfigs {\\
-                  release {\\
-                      storeFile file(\"thep-release-key.jks\")\\
-                      storePassword \"$STORE_PASS\"\\
-                      keyAlias \"$KEY_AL\"\\
-                      keyPassword \"$KEY_PASS\"\\
-                  }\\
-              }" android/app/build.gradle
-          sed -i "/release {/a\\
-                      signingConfig signingConfigs.release" android/app/build.gradle
-
-      - name: Build signed AAB
+      - name: Build AAB
         run: |
           chmod +x android/gradlew
           cd android && ./gradlew bundleRelease
+
+      - name: Sign AAB
+        run: |
+          echo "$KEYSTORE_B64" | base64 --decode > keystore.jks
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 \
+            -keystore keystore.jks \
+            -storepass "$STORE_PASS" \
+            -keypass "$KEY_PASS" \
+            android/app/build/outputs/bundle/release/app-release.aab "$KEY_AL"
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
+          STORE_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_AL: ${{ secrets.KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
