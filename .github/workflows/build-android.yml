@@ -37,32 +37,5 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
-      - name: Update target SDK
-        run: |
-          grep -rl "targetSdk" android/ --include="*.gradle*" | xargs sed -i 's/targetSdk\s*=\s*[0-9]*/targetSdk = 35/g'
-          grep -rl "targetSdkVersion" android/ --include="*.gradle*" | xargs sed -i 's/targetSdkVersion\s*[0-9]*/targetSdkVersion 35/g'
-
-      - name: Build AAB
-        run: |
-          chmod +x android/gradlew
-          cd android && ./gradlew bundleRelease
-
-      - name: Sign AAB
-        run: |
-          echo "$KEYSTORE_B64" | base64 --decode > keystore.jks
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 \
-            -keystore keystore.jks \
-            -storepass "$STORE_PASS" \
-            -keypass "$KEY_PASS" \
-            android/app/build/outputs/bundle/release/app-release.aab "$KEY_AL"
-        env:
-          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
-          STORE_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_AL: ${{ secrets.KEY_ALIAS }}
-          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Upload AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: TheP-release-aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
+      - name: Show gradle file
+        run: cat android/app/build.gradle.kts || cat android/app/build.gradle
