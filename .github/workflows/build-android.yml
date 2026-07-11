@@ -28,7 +28,10 @@ jobs:
 
       - name: Add Android platform
         run: npx cap add android || true
-
+      - name: Prepare web assets
+        run: |
+          mkdir -p www
+          cp index.html www/
       - name: Sync Capacitor
         run: npx cap sync android
 
