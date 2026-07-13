@@ -9,9 +9,9 @@ workflows:
       groups:
         - apple_credentials
       vars:
-        XCODE_WORKSPACE: "ios/App/App.xcworkspace"
-        XCODE_SCHEME: "App"
-        BUNDLE_ID: "com.thep.budgeting"
+        XCODE_WORKSPACE: ios/App/App.xcworkspace
+        XCODE_SCHEME: App
+        BUNDLE_ID: com.thep.budgeting
       node: 18
     scripts:
       - name: Install dependencies
@@ -25,21 +25,15 @@ workflows:
       - name: Sync Capacitor
         script: npx cap sync ios
       - name: Pod install
-        script: |
-          cd ios/App
-          pod install
-            - name: Set up code signing
+        script: cd ios/App && pod install
+      - name: Set up code signing
         script: |
           keychain initialize
-          echo "=== Creating certificate ==="
           app-store-connect create-certificate --type IOS_DISTRIBUTION --save
-          echo "=== Fetching signing files ==="
           app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
-          echo "=== Adding certificates ==="
           keychain add-certificates
-          echo "=== Using profiles ==="
           xcode-project use-profiles
-                  - name: Build iOS app
+      - name: Build iOS app
         script: |
           xcode-project build-ipa \
             --workspace "$XCODE_WORKSPACE" \
