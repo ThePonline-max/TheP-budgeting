@@ -28,8 +28,9 @@ workflows:
       - name: Update version
         script: |
           cd ios/App/App
-          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 4" Info.plist
-          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0.3" Info.plist
+          BUILD_NUM=$(date +%Y%m%d%H%M)
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUM" Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0.1" Info.plist
       - name: Pod install
         script: cd ios/App && pod install
       - name: Set up code signing
