@@ -8,12 +8,10 @@ workflows:
     environment:
       groups:
         - apple_credentials
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.thep.budgeting
       vars:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
+        BUNDLE_ID: "com.thep.budgeting"
       node: 18
     scripts:
       - name: Install dependencies
@@ -30,7 +28,7 @@ workflows:
         script: |
           cd ios/App
           pod install
-            - name: Set up code signing
+      - name: Set up code signing
         script: |
           keychain initialize
           app-store-connect create-certificate --type IOS_DISTRIBUTION --save || true
