@@ -8,9 +8,11 @@ workflows:
     environment:
       groups:
         - apple_credentials
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.thep.budgeting
       vars:
         BUNDLE_ID: com.thep.budgeting
-        TEAM_ID: 6K95F53VPK
       node: 18
     scripts:
       - name: Install dependencies
@@ -28,56 +30,15 @@ workflows:
       - name: Set up code signing
         script: |
           keychain initialize
-          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
           keychain add-certificates
           xcode-project use-profiles
-          echo "=== Installed profiles ==="
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/
-      - name: Create export options
-        script: |
-          cat > ~/export_options.plist << EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store</string>
-            <key>teamID</key>
-            <string>6K95F53VPK</string>
-            <key>signingStyle</key>
-            <string>manual</string>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>com.thep.budgeting</key>
-              <string>TheP Budgeting App Store</string>
-            </dict>
-          </dict>
-          </plist>
-          EOF
+          echo "=== Profiles ==="
+          ls ~/Library/MobileDevice/Provisioning\ Profiles/ || echo "No profiles found"
       - name: Build iOS app
         script: |
-          PROFILE_PATH=$(ls ~/Library/MobileDevice/Provisioning\ Profiles/*.mobileprovision 2>/dev/null | head -1)
-          if [ -z "$PROFILE_PATH" ]; then
-            echo "ERROR: No provisioning profile found!"
-            exit 1
-          fi
-          PROFILE_UUID=$(grep -a -A1 'UUID' "$PROFILE_PATH" | grep -o '[-a-zA-Z0-9]\{36\}')
-          echo "Using profile UUID: $PROFILE_UUID"
-          xcodebuild -workspace ios/App/App.xcworkspace \
-            -scheme App \
-            -configuration Release \
-            -archivePath ~/build/App.xcarchive \
-            archive \
-            CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM=$TEAM_ID \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            PROVISIONING_PROFILE="$PROFILE_UUID"
-      - name: Export IPA
-        script: |
-          xcodebuild -exportArchive \
-            -archivePath ~/build/App.xcarchive \
-            -exportPath build/ios/ipa \
-            -exportOptionsPlist ~/export_options.plist
+          xcode-project build-ipa \
+            --workspace ios/App/App.xcworkspace \
+            --scheme App
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
