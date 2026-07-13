@@ -9,9 +9,8 @@ workflows:
       groups:
         - apple_credentials
       vars:
-        XCODE_WORKSPACE: ios/App/App.xcworkspace
-        XCODE_SCHEME: App
         BUNDLE_ID: com.thep.budgeting
+        TEAM_ID: 6K95F53VPK
       node: 18
     scripts:
       - name: Install dependencies
@@ -29,15 +28,47 @@ workflows:
       - name: Set up code signing
         script: |
           keychain initialize
-          app-store-connect create-certificate --type IOS_DISTRIBUTION --save
           app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
           keychain add-certificates
           xcode-project use-profiles
+      - name: Create export options
+        script: |
+          cat > ~/export_options.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>teamID</key>
+            <string>6K95F53VPK</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.thep.budgeting</key>
+              <string>TheP Budgeting App Store</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
       - name: Build iOS app
         script: |
-          xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+          xcodebuild -workspace ios/App/App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -archivePath ~/build/App.xcarchive \
+            archive \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM=$TEAM_ID \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="TheP Budgeting App Store"
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath ~/build/App.xcarchive \
+            -exportPath build/ios/ipa \
+            -exportOptionsPlist ~/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
