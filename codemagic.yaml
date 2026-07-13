@@ -24,7 +24,7 @@ workflows:
         script: npx cap add ios || true
       - name: Sync Capacitor
         script: npx cap sync ios
-      - name: Install CocoaPods
+      - name: Pod install
         script: |
           cd ios/App
           pod install
