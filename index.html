@@ -136,8 +136,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div class="header">
     <select class="currency-sel" id="currSel" onchange="changeCurrency()">
-        <option value="GBP">GBP</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="NGN">NGN</option>
-    </select>
+    <option value="GBP">GBP</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="NGN">NGN</option><option value="JPY">JPY</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CHF">CHF</option><option value="INR">INR</option><option value="ZAR">ZAR</option><option value="BRL">BRL</option><option value="CNY">CNY</option><option value="KES">KES</option><option value="GHS">GHS</option><option value="AED">AED</option><option value="SAR">SAR</option><option value="MXN">MXN</option><option value="SGD">SGD</option><option value="HKD">HKD</option><option value="SEK">SEK</option><option value="NOK">NOK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="TRY">TRY</option><option value="THB">THB</option><option value="MYR">MYR</option><option value="PHP">PHP</option><option value="IDR">IDR</option><option value="KRW">KRW</option><option value="EGP">EGP</option><option value="PKR">PKR</option><option value="BDT">BDT</option><option value="COP">COP</option><option value="ARS">ARS</option><option value="CLP">CLP</option><option value="PEN">PEN</option><option value="TWD">TWD</option><option value="ILS">ILS</option><option value="RUB">RUB</option><option value="UAH">UAH</option>
+</select>
     <h1>TheP Budgeting</h1>
     <div class="subtitle">Your personal finance companion</div>
     <div class="balance-row">
@@ -252,7 +252,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <script>
 (function(){
 "use strict";
-var C={GBP:"\u00a3",USD:"$",EUR:"\u20ac",NGN:"\u20a6"};
+var C={GBP:"\u00a3",USD:"$",EUR:"\u20ac",NGN:"\u20a6",JPY:"\u00a5",CAD:"C$",AUD:"A$",CHF:"Fr",INR:"\u20b9",ZAR:"R",BRL:"R$",CNY:"\u00a5",KES:"KSh",GHS:"\u20b5",AED:"د.إ",SAR:"﷼",MXN:"$",SGD:"S$",HKD:"HK$",SEK:"kr",NOK:"kr",DKK:"kr",PLN:"zł",TRY:"\u20ba",THB:"\u0e3f",MYR:"RM",PHP:"\u20b1",IDR:"Rp",KRW:"\u20a9",EGP:"E£",PKR:"₨",BDT:"৳",COP:"$",ARS:"$",CLP:"$",PEN:"S/",TWD:"NT$",ILS:"\u20aa",RUB:"\u20bd",UAH:"\u20b4"};
 var RATES={GBP:{GBP:1,USD:1.27,EUR:1.17,NGN:2012},USD:{GBP:.79,USD:1,EUR:.92,NGN:1585},EUR:{GBP:.85,USD:1.09,EUR:1,NGN:1722},NGN:{GBP:.0005,USD:.00063,EUR:.00058,NGN:1}};
 var st={currency:"GBP",transactions:[],budgets:{},recurring:[],goals:[],isPro:false};
 function load(){try{var s=window.localStorage.getItem("theP_v1");if(s){var d=JSON.parse(s);st.currency=d.currency||"GBP";st.transactions=d.transactions||[];st.budgets=d.budgets||{};st.recurring=d.recurring||[];st.goals=d.goals||[];st.isPro=d.isPro||false;st.lastRateUpdate=d.lastRateUpdate||null}}catch(e){}}
@@ -322,8 +322,7 @@ window.clearAll=function(){if(!st.transactions.length){toast("Nothing to clear")
 window.deleteTx=function(id){st.transactions=st.transactions.filter(function(t){return t.id!==id});save();updateAll()};
 
 window.swapFx=function(){var f=document.getElementById("cvFrom"),t=document.getElementById("cvTo");var v=f.value;f.value=t.value;t.value=v};
-window.doConvert=function(){var a=parseFloat(document.getElementById("cvAmt").value);var f=document.getElementById("cvFrom").value,t=document.getElementById("cvTo").value;if(!a||a<=0){toast("Enter amount");return}var r=RATES[f]?RATES[f][t]:null;if(!r){toast("Rate unavailable");return}var res=a*r;document.getElementById("cvOut").textContent=(C[t]||t)+res.toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+r.toFixed(4)+" "+t;document.getElementById("cvResult").style.display="block";try{if(window.self===window.top){fetch("https://api.exchangerate-api.com/v4/latest/"+f).then(function(x){return x.json()}).then(function(d){if(d&&d.rates&&d.rates[t]){var lr=d.rates[t];document.getElementById("cvOut").textContent=(C[t]||t)+(a*lr).toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+lr.toFixed(4)+" "+t+" (live)"}}).catch(function(){})}}catch(e){}};
-
+window.doConvert=function(){var a=parseFloat(document.getElementById("cvAmt").value);var f=document.getElementById("cvFrom").value,t=document.getElementById("cvTo").value;if(!a||a<=0){toast("Enter amount");return}document.getElementById("cvOut").textContent="Loading...";document.getElementById("cvRate").textContent="";document.getElementById("cvResult").style.display="block";fetch("https://api.exchangerate-api.com/v4/latest/"+f).then(function(x){return x.json()}).then(function(d){if(d&&d.rates&&d.rates[t]){var lr=d.rates[t];var res=a*lr;document.getElementById("cvOut").textContent=(C[t]||t+" ")+res.toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+lr.toFixed(4)+" "+t+" (live)";st.lastRateUpdate=new Date().toISOString();save();updateRateTimestamp()}else{document.getElementById("cvOut").textContent="Rate unavailable";document.getElementById("cvRate").textContent=""}}).catch(function(){var r=RATES[f]?RATES[f][t]:null;if(r){var res=a*r;document.getElementById("cvOut").textContent=(C[t]||t+" ")+res.toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+r.toFixed(4)+" "+t+" (offline)"}else{document.getElementById("cvOut").textContent="Offline - rate unavailable";document.getElementById("cvRate").textContent=""}})};
 function monthYM(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")}
 function getExp(c){var ym=monthYM(),t=0;for(var i=0;i<st.transactions.length;i++){var x=st.transactions[i];if(x.date.indexOf(ym)===0&&x.type==="expense"&&(!c||x.category===c))t+=x.amount}return t}
 function getInc(){var ym=monthYM(),t=0;for(var i=0;i<st.transactions.length;i++){var x=st.transactions[i];if(x.date.indexOf(ym)===0&&x.type==="income")t+=x.amount}return t}
