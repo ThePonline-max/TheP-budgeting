@@ -40,7 +40,7 @@ jobs:
       - name: Update target SDK and version code
         run: |
           sed -i "s/targetSdkVersion = .*/targetSdkVersion = 35/" android/variables.gradle
-          sed -i "s/versionCode 1/versionCode 5/" android/app/build.gradle
+          sed -i "s/versionCode 1/versionCode 6/" android/app/build.gradle
 
       - name: Build AAB
         run: |
