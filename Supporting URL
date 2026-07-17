@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheP Budgeting Support</title>
+
+<style>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    max-width:700px;
+    margin:50px auto;
+    padding:20px;
+    line-height:1.6;
+    background:#f8f8f8;
+    color:#333;
+}
+.container{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+h1{
+    color:#2E7D32;
+}
+a{
+    color:#0066cc;
+    text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>TheP Budgeting Support</h1>
+
+<p>
+Thank you for using <strong>TheP Budgeting</strong>.
+</p>
+
+<p>
+If you experience any issues, have questions, or would like to suggest improvements, please contact us.
+</p>
+
+<h2>Support</h2>
+
+<p>
+Email:
+<a href="theponline30@gmail.com">
+YOUR_EMAIL@gmail.com
+</a>
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p><strong>Does the app require an internet connection?</strong><br>
+No. Most budgeting features work completely offline. Internet access is only needed when retrieving exchange rates.
+</p>
+
+<p><strong>Where is my data stored?</strong><br>
+Your financial information is stored locally on your device.
+</p>
+
+<p><strong>Does the app collect my personal information?</strong><br>
+No. TheP Budgeting does not collect or sell your personal data.
+</p>
+
+<p><strong>How can I report a bug?</strong><br>
+Send an email to the address above and include your device model and iOS version.
+</p>
+
+<hr>
+
+<p>
+© 2026 Omirin Peter
+</p>
+
+</div>
+
+</body>
+</html>
