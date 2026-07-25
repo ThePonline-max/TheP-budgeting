@@ -1,6 +1,6 @@
 {
   "appId": "com.thep.budgeting",
-  "appName": "TheP Budgeting",
+  "appName": "Your Budgeting",
   "webDir": "www",
   "server": {
     "androidScheme": "https"
