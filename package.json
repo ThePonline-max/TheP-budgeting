@@ -1,7 +1,7 @@
 {
   "name": "thep-budget",
   "version": "1.0.0",
-  "description": "TheP - Your personal budget & expense tracker",
+  "description": "Your - Your personal budget & expense tracker",
   "main": "index.js",
   "scripts": {
     "build": "echo 'Static app - no build step needed'",
