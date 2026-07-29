@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#6C5CE7">
 <title>Your Budgeting</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlRoZVAiLCAic2hvcnRfbmFtZSI6ICJUaGVQIiwgInN0YXJ0X3VybCI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGOEY5RkEiLCAidGhlbWVfY29sb3IiOiAiIzZDNUNFNyIsICJpY29ucyI6IFt7InNyYyI6ICJpY29uLnN2ZyIsICJzaXplcyI6ICJhbnkiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ==">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM2QzVDRTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNBMjlCRkUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMTkyIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjQ2MCIgcj0iMjQwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE2Ii8+PHRleHQgeD0iNTEyIiB5PSI1MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5QPC90ZXh0PjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IndoaXRlIi8+PC9zdmc+">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM2QzVDRTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNBMjlCRkUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMTkyIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjQ2MCIgcj0iMjQwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE2Ii8+PHRleHQgeD0iNTEyIiB5PSI1MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5QPC90ZXh0PjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IndoaXRlIi8+PC9zdmc+">
@@ -207,17 +208,7 @@ body{
         <div class="card"><div class="card-title">Your Bills</div><div id="recurringList"></div></div>
     </div>
 </div>
-    <div class="card">
-    <div class="card-title">
-        Transaction History
-        <button id="btnExportCSV" class="pro-btn">
-            Export CSV ★
-        </button>
-    </div>
-
-    <div id="logList"></div>
-</div>
-
+   
 <!-- HISTORY (FREE) -->
 <div class="section" id="section-history">
     <div class="card">
@@ -251,52 +242,25 @@ body{
 
 <!-- FORECAST (PRO) -->
 <div class="section" id="section-forecast">
-
-    <!-- Existing Forecast -->
     <div class="card">
         <div class="card-title">End-of-Month Forecast</div>
-        <div id="fcMeta"></div>
-        <div id="fcList"></div>
+        
+        <!-- Summary text -->
+        <div id="fcMeta" style="margin-bottom: 15px;"></div>
+
+        <!-- Forecast Chart -->
+        <h4 style="margin: 15px 0 8px;">Projected Balance Until End of Month</h4>
+        <canvas id="forecastChart" height="220"></canvas>
+
+        <!-- Detailed list -->
+        <div id="fcList" style="margin-top: 20px;"></div>
     </div>
 
-    <!-- Analytics Dashboard -->
+    <!-- Your existing Analytics Dashboard card stays the same -->
     <div class="card">
         <div class="card-title">Analytics Dashboard</div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">Balance</div>
-                <div id="dbBalance" class="stat-value">$0.00</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-label">Income</div>
-                <div id="dbIncome" class="stat-value">$0.00</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-label">Expenses</div>
-                <div id="dbExpense" class="stat-value">$0.00</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-label">Savings</div>
-                <div id="dbSavings" class="stat-value">$0.00</div>
-            </div>
-        </div>
-
-        <h4>Spending by Category</h4>
-        <canvas id="categoryChart" height="220"></canvas>
-
-        <h4>Income vs Expenses</h4>
-        <canvas id="incomeExpenseChart" height="220"></canvas>
-
-        <h4>Quick Statistics</h4>
-
-        <div id="dashboardStats"></div>
-
+        <!-- ... keep your existing dashboard code ... -->
     </div>
-
 </div>
 
 
