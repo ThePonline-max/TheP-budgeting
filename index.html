@@ -207,6 +207,16 @@ body{
         <div class="card"><div class="card-title">Your Bills</div><div id="recurringList"></div></div>
     </div>
 </div>
+    <div class="card">
+    <div class="card-title">
+        Transaction History
+        <button id="btnExportCSV" class="pro-btn">
+            Export CSV ★
+        </button>
+    </div>
+
+    <div id="logList"></div>
+</div>
 
 <!-- HISTORY (FREE) -->
 <div class="section" id="section-history">
@@ -241,8 +251,54 @@ body{
 
 <!-- FORECAST (PRO) -->
 <div class="section" id="section-forecast">
-    <div class="card"><div class="card-title">End-of-Month Forecast</div><div id="fcMeta"></div><div id="fcList"></div></div>
+
+    <!-- Existing Forecast -->
+    <div class="card">
+        <div class="card-title">End-of-Month Forecast</div>
+        <div id="fcMeta"></div>
+        <div id="fcList"></div>
+    </div>
+
+    <!-- Analytics Dashboard -->
+    <div class="card">
+        <div class="card-title">Analytics Dashboard</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Balance</div>
+                <div id="dbBalance" class="stat-value">$0.00</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Income</div>
+                <div id="dbIncome" class="stat-value">$0.00</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Expenses</div>
+                <div id="dbExpense" class="stat-value">$0.00</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Savings</div>
+                <div id="dbSavings" class="stat-value">$0.00</div>
+            </div>
+        </div>
+
+        <h4>Spending by Category</h4>
+        <canvas id="categoryChart" height="220"></canvas>
+
+        <h4>Income vs Expenses</h4>
+        <canvas id="incomeExpenseChart" height="220"></canvas>
+
+        <h4>Quick Statistics</h4>
+
+        <div id="dashboardStats"></div>
+
+    </div>
+
 </div>
+
 
 <!-- FX CONVERTER (PRO) -->
 <div class="section" id="section-convert">
