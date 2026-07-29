@@ -256,12 +256,150 @@ body{
         <div id="fcList" style="margin-top: 20px;"></div>
     </div>
 
-    <!-- Your existing Analytics Dashboard card stays the same -->
+    <!-- Your existing Analytics Dashboard card -->
     <div class="card">
         <div class="card-title">Analytics Dashboard</div>
-        <!-- ... keep your existing dashboard code ... -->
+        <!-- Keep your existing dashboard code here -->
     </div>
 </div>
+<script>
+// Your entire original JavaScript stays the same
+// ... [everything up to the end of the original script] ...
+
+// === NEW: Forecast Chart ===
+let forecastChart = null;
+
+function renderForecastChart(labels, balances) {
+    const canvas = document.getElementById('forecastChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    if (forecastChart) forecastChart.destroy();
+
+    forecastChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Projected Balance',
+                data: balances,
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                fill: true,
+                tension: 0.35,
+                pointRadius: 4,
+                pointBackgroundColor: '#3b82f6'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return '$' + context.raw.toFixed(2);
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function updateForecast() {
+    var el = document.getElementById("fcList");
+    var mEl = document.getElementById("fcMeta");
+    var cats = Object.keys(st.budgets);
+    if (!cats.length || !st.transactions.length) {
+        el.innerHTML = '<div class="empty">Add expenses and budgets to see forecast.</div>';
+        mEl.innerHTML = "";
+        return;
+    }
+
+    var now = new Date();
+    var dim = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    var de = Math.max(now.getDate(), 1);
+    var dl = dim - de;
+
+    mEl.innerHTML = `<div class="stats-row">
+        <div class="stat-card"><div class="stat-val">${de}</div><div class="stat-lbl">Days in</div></div>
+        <div class="stat-card"><div class="stat-val">${dl}</div><div class="stat-lbl">Left</div></div>
+        <div class="stat-card"><div class="stat-val">${dim}</div><div class="stat-lbl">Total</div></div>
+    </div>`;
+
+    // === NEW: Generate data for the chart ===
+    var labels = [];
+    var projectedBalances = [];
+    var balance = getCurrentBalance();           // we'll add this helper
+    var avgDailyExpense = calculateDailyAverageExpense(); // we'll add this helper
+    var remainingDays = getRemainingDaysInMonth();
+
+    for (let i = 0; i <= remainingDays; i++) {
+        var date = new Date();
+        date.setDate(date.getDate() + i);
+        labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+        projectedBalances.push(Number(balance.toFixed(2)));
+        balance -= avgDailyExpense;
+    }
+
+    renderForecastChart(labels, projectedBalances);
+
+    // === Your original list code (unchanged) ===
+    var s = sym();
+    var h = "";
+    for (var i = 0; i < cats.length; i++) {
+        var c = cats[i], b = st.budgets[c], sp = getExp(c);
+        var pr = (sp / de) * dim;
+        var bg, bc;
+        if (pr < b * 0.8) { bg = "On track"; bc = "bg-green" }
+        else if (pr <= b) { bg = "Watch"; bc = "bg-amber" }
+        else { bg = "Over"; bc = "bg-red" }
+        h += `<div class="forecast-item"><div class="fc-badge ${bc}">${bg}</div>
+            <div class="fc-details"><div class="fc-cat">${c}</div>
+            <div class="fc-nums">${s}${sp.toFixed(0)} &rarr; ${s}${pr.toFixed(0)} of ${s}${b.toFixed(0)}</div></div></div>`;
+    }
+    el.innerHTML = h;
+}
+
+// === Helper functions for the chart (add these at the bottom) ===
+function getCurrentBalance() {
+    var s = sym();
+    var inc = getInc();
+    var exp = getExp();
+    return inc - exp;
+}
+
+function calculateDailyAverageExpense() {
+    var expSum = 0;
+    var daysInMonth = getRemainingDaysInMonth() + 1;
+    for (var i = 0; i < st.transactions.length; i++) {
+        var x = st.transactions[i];
+        if (x.date.indexOf(monthYM()) === 0 && x.type === "expense") {
+            expSum += x.amount;
+        }
+    }
+    return daysInMonth > 0 ? expSum / daysInMonth : 0;
+}
+
+function getRemainingDaysInMonth() {
+    var now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate() - now.getDate();
+}
+
+// Call updateForecast after you add the chart render function
+// (your existing updateAll() already calls updateForecast())
 
 
 <!-- FX CONVERTER (PRO) -->
