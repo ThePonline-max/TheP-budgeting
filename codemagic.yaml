@@ -22,29 +22,30 @@ workflows:
           mkdir -p www
           cp index.html www/
       - name: Add iOS platform
-        script: npx cap add ios || true
+        script: npx cap add ios
       - name: Sync Capacitor
         script: npx cap sync ios
+      - name: Replace app icons
+        script: |
+          ICON_DEST="ios/App/App/Assets.xcassets/AppIcon.appiconset"
+          rm -f "$ICON_DEST"/*.png "$ICON_DEST/Contents.json"
+          cp assets/icons/ios/*.png "$ICON_DEST/"
+          cp assets/icons/ios/Contents.json "$ICON_DEST/"
+          echo "App icons replaced successfully"
       - name: Update version
         script: |
-          cd ios/App/App
           BUILD_NUM=$(date +%Y%m%d%H%M)
-          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUM" Info.plist
-          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0.1" Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUM" ios/App/App/Info.plist
       - name: Pod install
         script: cd ios/App && pod install
       - name: Set up code signing
         script: |
           keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
           keychain add-certificates
           xcode-project use-profiles
-          echo "=== Profiles ==="
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/ || echo "No profiles found"
       - name: Build iOS app
-        script: |
-          xcode-project build-ipa \
-            --workspace ios/App/App.xcworkspace \
-            --scheme App
+        script: xcode-project build-ipa --workspace "ios/App/App.xcworkspace" --scheme "App"
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
