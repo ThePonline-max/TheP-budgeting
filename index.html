@@ -7,26 +7,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#6C5CE7">
 <title>Your Budgeting</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlRoZVAiLCAic2hvcnRfbmFtZSI6ICJUaGVQIiwgInN0YXJ0X3VybCI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGOEY5RkEiLCAidGhlbWVfY29sb3IiOiAiIzZDNUNFNyIsICJpY29ucyI6IFt7InNyYyI6ICJpY29uLnN2ZyIsICJzaXplcyI6ICJhbnkiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ==">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM2QzVDRTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNBMjlCRkUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMTkyIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjQ2MCIgcj0iMjQwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE2Ii8+PHRleHQgeD0iNTEyIiB5PSI1MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5QPC90ZXh0PjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IndoaXRlIi8+PC9zdmc+">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM2QzVDRTciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNBMjlCRkUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMTkyIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjQ2MCIgcj0iMjQwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE2Ii8+PHRleHQgeD0iNTEyIiB5PSI1MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5QPC90ZXh0PjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPjxyZWN0IHg9IjMxMiIgeT0iNzYwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI0IiByeD0iMTIiIGZpbGw9IndoaXRlIi8+PC9zdmc+">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--primary:#6C5CE7;--primary-light:#A29BFE;--success:#00B894;--warning:#F39C12;--danger:#E17055;--income:#0984E3;--gold:#F1C40F;--bg:#F8F9FA;--card:#FFF;--text:#2D3436;--text-muted:#636E72;--border:#E9ECEF}
-body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    width:100%;
-    min-height:100vh;
-    font-size:15px;
-    margin:0;
-    padding-top:0;
-    padding-bottom:calc(env(safe-area-inset-bottom) + 80px);
-    -webkit-tap-highlight-color:transparent;
-    overscroll-behavior:none;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);width:100%;min-height:100vh;font-size:15px;margin:0;padding-top:0;padding-bottom:calc(env(safe-area-inset-bottom) + 80px);-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
 .header{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:68px 20px 20px;border-radius:0 0 24px 24px;text-align:center;position:relative;margin-top:calc(-1 * env(safe-area-inset-top));padding-top:calc(env(safe-area-inset-top) + 44px)}
 @supports(padding-top:env(safe-area-inset-top)){.header{margin-top:calc(-1 * env(safe-area-inset-top));padding-top:calc(env(safe-area-inset-top) + 44px)}}
 .header h1{font-size:24px;font-weight:800;margin-bottom:2px;letter-spacing:-0.5px}
@@ -107,7 +95,6 @@ body{
 .tab-sub-btn{flex:1;padding:8px;border:2px solid var(--border);border-radius:8px;font-size:11px;font-weight:600;text-align:center;cursor:pointer;background:var(--card);color:var(--text-muted)}
 .tab-sub-btn.active{border-color:var(--primary);color:var(--primary);background:rgba(108,92,231,.05)}
 .sub-section{display:none}.sub-section.active{display:block}
-/* Premium overlay */
 .pro-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px;backdrop-filter:blur(4px)}
 .pro-overlay.show{display:flex}
 .pro-box{background:#fff;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;text-align:center}
@@ -120,23 +107,24 @@ body{
 .pro-box li:before{content:"\2713 ";color:var(--success);font-weight:700;margin-right:6px}
 .pro-close{margin-top:12px;color:var(--text-muted);font-size:13px;cursor:pointer;text-decoration:underline}
 .offline-pill{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--warning);color:#000;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:100;display:none}
+.chart-container{position:relative;height:200px;margin:12px 0}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
 <div class="offline-pill" id="offlinePill">Offline - changes saved locally</div>
 
-<!-- Premium Upgrade Overlay -->
 <div class="pro-overlay" id="proOverlay">
     <div class="pro-box">
         <h2>Your Pro</h2>
         <p style="color:var(--text-muted);font-size:13px;">Unlock premium features</p>
-        <div class="pro-price">Free Trial<br><span>then just £2.99/month</span></div>
+        <div class="pro-price">Free Trial<br><span>then just \u00a32.99/month</span></div>
         <ul>
             <li>Recurring Bills Tracker</li>
             <li>Currency Converter (FX)</li>
             <li>End-of-Month Forecast</li>
             <li>Savings Goals Tracker</li>
+            <li>Budget Tracking</li>
             <li>Data Export (CSV)</li>
             <li>Priority Support</li>
             <li>No Ads</li>
@@ -150,7 +138,8 @@ body{
 <div class="header">
     <select class="currency-sel" id="currSel" onchange="changeCurrency()">
     <option value="GBP">GBP</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="NGN">NGN</option><option value="JPY">JPY</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CHF">CHF</option><option value="INR">INR</option><option value="ZAR">ZAR</option><option value="BRL">BRL</option><option value="CNY">CNY</option><option value="KES">KES</option><option value="GHS">GHS</option><option value="AED">AED</option><option value="SAR">SAR</option><option value="MXN">MXN</option><option value="SGD">SGD</option><option value="HKD">HKD</option><option value="SEK">SEK</option><option value="NOK">NOK</option><option value="DKK">DKK</option><option value="PLN">PLN</option><option value="TRY">TRY</option><option value="THB">THB</option><option value="MYR">MYR</option><option value="PHP">PHP</option><option value="IDR">IDR</option><option value="KRW">KRW</option><option value="EGP">EGP</option><option value="PKR">PKR</option><option value="BDT">BDT</option><option value="COP">COP</option><option value="ARS">ARS</option><option value="CLP">CLP</option><option value="PEN">PEN</option><option value="TWD">TWD</option><option value="ILS">ILS</option><option value="RUB">RUB</option><option value="UAH">UAH</option>
-</select>
+    </select>
+    <img src="logo.png" alt="Your Budgeting" style="width:56px;height:56px;border-radius:12px;margin-bottom:6px;box-shadow:0 4px 12px rgba(0,0,0,0.15)">
     <h1>Your Budgeting</h1>
     <div class="subtitle">Your personal finance companion</div>
     <div class="balance-row">
@@ -163,13 +152,12 @@ body{
 <div class="nav-tabs">
     <div class="nav-tab active" data-tab="add" onclick="switchTab('add')">Add</div>
     <div class="nav-tab" data-tab="history" onclick="switchTab('history')">Log</div>
-   <div class="nav-tab" data-tab="budgets" onclick="switchTab('budgets')">Budget<span class="pro-badge">PRO</span></div>
+    <div class="nav-tab" data-tab="budgets" onclick="switchTab('budgets')">Budget<span class="pro-badge">PRO</span></div>
     <div class="nav-tab" data-tab="goals" onclick="switchTab('goals')">Goals<span class="pro-badge">PRO</span></div>
     <div class="nav-tab" data-tab="forecast" onclick="switchTab('forecast')">Forecast<span class="pro-badge">PRO</span></div>
     <div class="nav-tab" data-tab="convert" onclick="switchTab('convert')">FX<span class="pro-badge">PRO</span></div>
 </div>
 
-<!-- ADD SECTION (FREE) -->
 <div class="section active" id="section-add">
     <div class="tab-sub">
         <div class="tab-sub-btn active" onclick="switchSub('expense')">Expense</div>
@@ -208,8 +196,7 @@ body{
         <div class="card"><div class="card-title">Your Bills</div><div id="recurringList"></div></div>
     </div>
 </div>
-   
-<!-- HISTORY (FREE) -->
+
 <div class="section" id="section-history">
     <div class="card">
         <div class="card-title"><span>Transaction Log</span><button class="btn btn-danger btn-small" onclick="clearAll()">Clear</button></div>
@@ -217,7 +204,6 @@ body{
     </div>
 </div>
 
-<!-- BUDGETS (FREE) -->
 <div class="section" id="section-budgets">
     <div class="card">
         <div class="card-title">Set Monthly Budget</div>
@@ -228,7 +214,6 @@ body{
     <div class="card"><div class="card-title">Overview</div><div id="budStats"></div><div id="budList"></div></div>
 </div>
 
-<!-- GOALS (PRO) -->
 <div class="section" id="section-goals">
     <div class="card">
         <div class="card-title">New Savings Goal</div>
@@ -240,169 +225,15 @@ body{
     <div class="card"><div class="card-title">Your Goals</div><div id="goalList"></div></div>
 </div>
 
-<!-- FORECAST (PRO) -->
 <div class="section" id="section-forecast">
     <div class="card">
         <div class="card-title">End-of-Month Forecast</div>
-        
-        <!-- Summary text -->
-        <div id="fcMeta" style="margin-bottom: 15px;"></div>
-
-        <!-- Forecast Chart -->
-        <h4 style="margin: 15px 0 8px;">Projected Balance Until End of Month</h4>
-        <canvas id="forecastChart" height="220"></canvas>
-
-        <!-- Detailed list -->
-        <div id="fcList" style="margin-top: 20px;"></div>
-    </div>
-
-    <!-- Your existing Analytics Dashboard card -->
-    <div class="card">
-        <div class="card-title">Analytics Dashboard</div>
-        <!-- Keep your existing dashboard code here -->
+        <div id="fcMeta"></div>
+        <div class="chart-container"><canvas id="forecastChart"></canvas></div>
+        <div id="fcList"></div>
     </div>
 </div>
-<script>
-// Your entire original JavaScript stays the same
-// ... [everything up to the end of the original script] ...
 
-// === NEW: Forecast Chart ===
-let forecastChart = null;
-
-function renderForecastChart(labels, balances) {
-    const canvas = document.getElementById('forecastChart');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-
-    if (forecastChart) forecastChart.destroy();
-
-    forecastChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Projected Balance',
-                data: balances,
-                borderColor: '#3b82f6',
-                backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                fill: true,
-                tension: 0.35,
-                pointRadius: 4,
-                pointBackgroundColor: '#3b82f6'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return '$' + context.raw.toFixed(2);
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    ticks: {
-                        callback: function(value) {
-                            return '$' + value;
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-function updateForecast() {
-    var el = document.getElementById("fcList");
-    var mEl = document.getElementById("fcMeta");
-    var cats = Object.keys(st.budgets);
-    if (!cats.length || !st.transactions.length) {
-        el.innerHTML = '<div class="empty">Add expenses and budgets to see forecast.</div>';
-        mEl.innerHTML = "";
-        return;
-    }
-
-    var now = new Date();
-    var dim = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    var de = Math.max(now.getDate(), 1);
-    var dl = dim - de;
-
-    mEl.innerHTML = `<div class="stats-row">
-        <div class="stat-card"><div class="stat-val">${de}</div><div class="stat-lbl">Days in</div></div>
-        <div class="stat-card"><div class="stat-val">${dl}</div><div class="stat-lbl">Left</div></div>
-        <div class="stat-card"><div class="stat-val">${dim}</div><div class="stat-lbl">Total</div></div>
-    </div>`;
-
-    // === NEW: Generate data for the chart ===
-    var labels = [];
-    var projectedBalances = [];
-    var balance = getCurrentBalance();           // we'll add this helper
-    var avgDailyExpense = calculateDailyAverageExpense(); // we'll add this helper
-    var remainingDays = getRemainingDaysInMonth();
-
-    for (let i = 0; i <= remainingDays; i++) {
-        var date = new Date();
-        date.setDate(date.getDate() + i);
-        labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-        projectedBalances.push(Number(balance.toFixed(2)));
-        balance -= avgDailyExpense;
-    }
-
-    renderForecastChart(labels, projectedBalances);
-
-    // === Your original list code (unchanged) ===
-    var s = sym();
-    var h = "";
-    for (var i = 0; i < cats.length; i++) {
-        var c = cats[i], b = st.budgets[c], sp = getExp(c);
-        var pr = (sp / de) * dim;
-        var bg, bc;
-        if (pr < b * 0.8) { bg = "On track"; bc = "bg-green" }
-        else if (pr <= b) { bg = "Watch"; bc = "bg-amber" }
-        else { bg = "Over"; bc = "bg-red" }
-        h += `<div class="forecast-item"><div class="fc-badge ${bc}">${bg}</div>
-            <div class="fc-details"><div class="fc-cat">${c}</div>
-            <div class="fc-nums">${s}${sp.toFixed(0)} &rarr; ${s}${pr.toFixed(0)} of ${s}${b.toFixed(0)}</div></div></div>`;
-    }
-    el.innerHTML = h;
-}
-
-// === Helper functions for the chart (add these at the bottom) ===
-function getCurrentBalance() {
-    var s = sym();
-    var inc = getInc();
-    var exp = getExp();
-    return inc - exp;
-}
-
-function calculateDailyAverageExpense() {
-    var expSum = 0;
-    var daysInMonth = getRemainingDaysInMonth() + 1;
-    for (var i = 0; i < st.transactions.length; i++) {
-        var x = st.transactions[i];
-        if (x.date.indexOf(monthYM()) === 0 && x.type === "expense") {
-            expSum += x.amount;
-        }
-    }
-    return daysInMonth > 0 ? expSum / daysInMonth : 0;
-}
-
-function getRemainingDaysInMonth() {
-    var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate() - now.getDate();
-}
-
-// Call updateForecast after you add the chart render function
-// (your existing updateAll() already calls updateForecast())
-
-
-<!-- FX CONVERTER (PRO) -->
 <div class="section" id="section-convert">
     <div class="card">
         <div class="card-title">Currency Converter</div>
@@ -422,77 +253,52 @@ function getRemainingDaysInMonth() {
 <script>
 (function(){
 "use strict";
-var C={GBP:"\u00a3",USD:"$",EUR:"\u20ac",NGN:"\u20a6",JPY:"\u00a5",CAD:"C$",AUD:"A$",CHF:"Fr",INR:"\u20b9",ZAR:"R",BRL:"R$",CNY:"\u00a5",KES:"KSh",GHS:"\u20b5",AED:"د.إ",SAR:"﷼",MXN:"$",SGD:"S$",HKD:"HK$",SEK:"kr",NOK:"kr",DKK:"kr",PLN:"zł",TRY:"\u20ba",THB:"\u0e3f",MYR:"RM",PHP:"\u20b1",IDR:"Rp",KRW:"\u20a9",EGP:"E£",PKR:"₨",BDT:"৳",COP:"$",ARS:"$",CLP:"$",PEN:"S/",TWD:"NT$",ILS:"\u20aa",RUB:"\u20bd",UAH:"\u20b4"};
+var C={GBP:"\u00a3",USD:"$",EUR:"\u20ac",NGN:"\u20a6",JPY:"\u00a5",CAD:"C$",AUD:"A$",CHF:"Fr",INR:"\u20b9",ZAR:"R",BRL:"R$",CNY:"\u00a5",KES:"KSh",GHS:"\u20b5",AED:"\u062f.\u0625",SAR:"\ufdfc",MXN:"$",SGD:"S$",HKD:"HK$",SEK:"kr",NOK:"kr",DKK:"kr",PLN:"z\u0142",TRY:"\u20ba",THB:"\u0e3f",MYR:"RM",PHP:"\u20b1",IDR:"Rp",KRW:"\u20a9",EGP:"E\u00a3",PKR:"\u20a8",BDT:"\u09f3",COP:"$",ARS:"$",CLP:"$",PEN:"S/",TWD:"NT$",ILS:"\u20aa",RUB:"\u20bd",UAH:"\u20b4"};
 var RATES={GBP:{GBP:1,USD:1.27,EUR:1.17,NGN:2012},USD:{GBP:.79,USD:1,EUR:.92,NGN:1585},EUR:{GBP:.85,USD:1.09,EUR:1,NGN:1722},NGN:{GBP:.0005,USD:.00063,EUR:.00058,NGN:1}};
 var st={currency:"GBP",transactions:[],budgets:{},recurring:[],goals:[],isPro:false};
+var forecastChart=null;
+
 function load(){try{var s=window.localStorage.getItem("theP_v1");if(s){var d=JSON.parse(s);st.currency=d.currency||"GBP";st.transactions=d.transactions||[];st.budgets=d.budgets||{};st.recurring=d.recurring||[];st.goals=d.goals||[];st.isPro=d.isPro||false;st.lastRateUpdate=d.lastRateUpdate||null}}catch(e){}}
 function save(){try{window.localStorage.setItem("theP_v1",JSON.stringify(st))}catch(e){}}
 load();
 
-// PREMIUM GATE
 var PRO_TABS=["goals","forecast","convert","recurring","budgets"];
-
-function checkPro(tab){
-    if(PRO_TABS.indexOf(tab)!==-1 && !st.isPro){showProOverlay();return false}
-    return true;
-}
+function checkPro(tab){if(PRO_TABS.indexOf(tab)!==-1&&!st.isPro){showProOverlay();return false}return true}
 function showProOverlay(){document.getElementById("proOverlay").classList.add("show")}
 window.closeProOverlay=function(){document.getElementById("proOverlay").classList.remove("show")};
-window.activatePro=function(){
-    // In production: integrate with Play Store / App Store in-app purchase API
-    // For now: activate directly (you'll replace this with real payment)
-    st.isPro=true;save();
-    document.getElementById("proOverlay").classList.remove("show");
-    toast("TheP Pro activated! Enjoy all features.");
-    updateAll();
-};
-window.restorePro=function(){
-    // In production: verify purchase with store receipt
-    st.isPro=true;save();
-    document.getElementById("proOverlay").classList.remove("show");
-    toast("Purchase restored!");
-};
+window.activatePro=function(){st.isPro=true;save();document.getElementById("proOverlay").classList.remove("show");toast("Pro activated! Enjoy all features.");updateAll()};
+window.restorePro=function(){st.isPro=true;save();document.getElementById("proOverlay").classList.remove("show");toast("Purchase restored!")};
 
-var KW={"Food and Dining":["food","lunch","dinner","breakfast","coffee","restaurant","takeaway","groceries","supermarket","meal","snack","cafe","eat","pret","pizza","burger","jollof","suya"],"Transport":["uber","taxi","bus","train","fuel","petrol","parking","travel","flight","tube","bolt"],"Utilities":["electric","water","internet","wifi","phone","mobile","broadband","bill","dstv","airtime","data"],"Entertainment":["cinema","movie","netflix","spotify","game","concert","theatre","streaming","music"],"Shopping":["clothes","shoes","amazon","online","store","mall","fashion","electronics","jumia"],"Health":["gym","doctor","pharmacy","medicine","dentist","hospital","fitness"],"Housing":["rent","mortgage","repair","furniture","home","maintenance"],"Education":["course","book","tuition","school","training","udemy"],"Subscriptions":["subscription","membership","premium","plan"],"Personal Care":["haircut","salon","spa","cosmetics","barber"],"Gifts":["gift","present","birthday","donation","charity"]};
+var KW={"Food and Dining":["food","lunch","dinner","breakfast","coffee","restaurant","takeaway","groceries","supermarket","meal","snack","cafe","eat","pret","pizza","burger","jollof","suya"],"Transport":["uber","taxi","bus","train","fuel","petrol","parking","travel","flight","tube","bolt"],"Utilities":["electric","water","internet","wifi","phone","mobile","broadband","bill","dstv","airtime","data"],"Entertainment":["cinema","movie","netflix","spotify","game","concert","theatre","streaming","music"],"Shopping":["clothes","shoes","amazon","online","store","mall","fashion","electronics","jumia"],"Health":["gym","doctor","pharmacy","medicine","dentist","hospital","fitness"],"Housing":["rent","mortgage","repair","furniture","home","maintenance"],"Education":["course","book","tuition","school","training","udemy"],"Subscriptions":["subscription","membership","premium","plan"],"Personal Care":["haircut","salon","spa","cosmetics","barber","skincare","makeup","nails","facial","grooming","perfume","lotion","shampoo","cream","beauty","wax"],"Gifts":["gift","present","birthday","donation","charity"]};
 var IC={"Food and Dining":"\ud83c\udf55","Transport":"\ud83d\ude97","Utilities":"\ud83d\udca1","Entertainment":"\ud83c\udfac","Shopping":"\ud83d\udecd\ufe0f","Health":"\ud83d\udc8a","Housing":"\ud83c\udfe0","Education":"\ud83d\udcda","Subscriptions":"\ud83d\udcf1","Personal Care":"\ud83d\udc87","Gifts":"\ud83c\udf81","Other":"\ud83d\udce6","Income":"\ud83d\udcb0"};
 
-function sym(){return C[st.currency]||"$"}
+function sym(){return C[st.currency]||st.currency+" "}
 function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function initDates(){document.getElementById("expDate").value=today();document.getElementById("incDate").value=today()}
-function initPfx(){var s=sym();["expPfx","incPfx","recPfx","budPfx","goalPfx"].forEach(function(id){document.getElementById(id).textContent=s});document.getElementById("currSel").value=st.currency}
+function initPfx(){var s=sym();["expPfx","incPfx","recPfx","budPfx","goalPfx"].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=s});document.getElementById("currSel").value=st.currency}
 function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},3000)}
 
 window.changeCurrency=function(){st.currency=document.getElementById("currSel").value;save();initPfx();updateAll();toast("Currency: "+st.currency)};
-
-window.switchTab=function(tab){
-    if(!checkPro(tab))return;
-    var ts=document.querySelectorAll(".nav-tab");for(var i=0;i<ts.length;i++)ts[i].classList.toggle("active",ts[i].getAttribute("data-tab")===tab);
-    var ss=document.querySelectorAll(".section");for(var i=0;i<ss.length;i++)ss[i].classList.remove("active");
-    document.getElementById("section-"+tab).classList.add("active");updateAll();updateRateTimestamp();
-};
+window.switchTab=function(tab){if(!checkPro(tab))return;var ts=document.querySelectorAll(".nav-tab");for(var i=0;i<ts.length;i++)ts[i].classList.toggle("active",ts[i].getAttribute("data-tab")===tab);var ss=document.querySelectorAll(".section");for(var i=0;i<ss.length;i++)ss[i].classList.remove("active");document.getElementById("section-"+tab).classList.add("active");updateAll();updateRateTimestamp()};
 window.switchSub=function(sub){if(sub==="recurring"&&!st.isPro){showProOverlay();return}var bs=document.querySelectorAll(".tab-sub-btn");for(var i=0;i<bs.length;i++)bs[i].classList.toggle("active",bs[i].textContent.toLowerCase().indexOf(sub)!==-1);var ss=document.querySelectorAll(".sub-section");for(var i=0;i<ss.length;i++)ss[i].classList.remove("active");document.getElementById("sub-"+sub).classList.add("active")};
 
 function cat(desc){var d=desc.toLowerCase(),b="Other",bs=0;var k=Object.keys(KW);for(var i=0;i<k.length;i++){var sc=0,ws=KW[k[i]];for(var j=0;j<ws.length;j++)if(d.indexOf(ws[j])!==-1)sc++;if(sc>bs){bs=sc;b=k[i]}}return b}
 
 window.addExpense=function(){var a=parseFloat(document.getElementById("expAmt").value);var d=document.getElementById("expDesc").value.trim();var c=document.getElementById("expCat").value;var dt=document.getElementById("expDate").value;if(!a||a<=0){toast("Enter a valid amount");return}if(!d){toast("Enter a description");return}if(c==="auto")c=cat(d);st.transactions.push({amount:a,description:d,category:c,date:dt,id:Date.now(),type:"expense"});save();document.getElementById("expAmt").value="";document.getElementById("expDesc").value="";document.getElementById("expCat").value="auto";toast("Logged "+sym()+a.toFixed(2)+" ["+c+"]");updateAll()};
-
 window.addIncome=function(){var a=parseFloat(document.getElementById("incAmt").value);var d=document.getElementById("incDesc").value.trim();var dt=document.getElementById("incDate").value;if(!a||a<=0){toast("Enter amount");return}if(!d){toast("Enter source");return}st.transactions.push({amount:a,description:d,category:"Income",date:dt,id:Date.now(),type:"income"});save();document.getElementById("incAmt").value="";document.getElementById("incDesc").value="";toast("Income: "+sym()+a.toFixed(2));updateAll()};
-
 window.addRecurring=function(){var n=document.getElementById("recName").value.trim();var a=parseFloat(document.getElementById("recAmt").value);var f=document.getElementById("recFreq").value;var d=parseInt(document.getElementById("recDay").value)||1;var c=document.getElementById("recCat").value;if(!n){toast("Enter bill name");return}if(!a||a<=0){toast("Enter amount");return}st.recurring.push({name:n,amount:a,frequency:f,dueDay:d,category:c,id:Date.now()});save();document.getElementById("recName").value="";document.getElementById("recAmt").value="";toast("Added: "+n);updateAll()};
 window.deleteRecurring=function(id){st.recurring=st.recurring.filter(function(r){return r.id!==id});save();updateAll()};
 window.deleteBudget=function(cat){if(confirm("Delete budget for "+cat+"?")){delete st.budgets[cat];save();toast("Budget removed: "+cat);updateAll()}};
 window.editBudget=function(cat,current){var newAmt=prompt("New budget for "+cat+":",current);if(!newAmt)return;newAmt=parseFloat(newAmt);if(!newAmt||newAmt<=0){toast("Invalid amount");return}st.budgets[cat]=newAmt;save();toast(cat+": "+sym()+newAmt+"/mo");updateAll()};
 window.setBudget=function(){var c=document.getElementById("budCat").value;var a=parseFloat(document.getElementById("budAmt").value);if(!a||a<=0){toast("Enter amount");return}st.budgets[c]=a;save();document.getElementById("budAmt").value="";toast(c+": "+sym()+a+"/mo");updateAll()};
-
 window.addGoal=function(){var n=document.getElementById("goalName").value.trim();var t=parseFloat(document.getElementById("goalTarget").value);var d=document.getElementById("goalDate").value;if(!n){toast("Enter goal name");return}if(!t||t<=0){toast("Enter target");return}st.goals.push({name:n,target:t,saved:0,targetDate:d,id:Date.now()});save();document.getElementById("goalName").value="";document.getElementById("goalTarget").value="";document.getElementById("goalDate").value="";toast("Goal created!");updateAll()};
 window.addToGoal=function(id){var amt=prompt("Amount to add?");if(!amt)return;amt=parseFloat(amt);if(!amt||amt<=0)return;for(var i=0;i<st.goals.length;i++){if(st.goals[i].id===id){st.goals[i].saved+=amt;break}}save();toast("Added "+sym()+amt.toFixed(2));updateAll()};
 window.deleteGoal=function(id){st.goals=st.goals.filter(function(g){return g.id!==id});save();updateAll()};
-
 window.clearAll=function(){if(!st.transactions.length){toast("Nothing to clear");return}if(confirm("Clear all "+st.transactions.length+" transactions?")){st.transactions=[];save();toast("Cleared");updateAll()}};
 window.deleteTx=function(id){st.transactions=st.transactions.filter(function(t){return t.id!==id});save();updateAll()};
-
 window.swapFx=function(){var f=document.getElementById("cvFrom"),t=document.getElementById("cvTo");var v=f.value;f.value=t.value;t.value=v};
 window.doConvert=function(){var a=parseFloat(document.getElementById("cvAmt").value);var f=document.getElementById("cvFrom").value,t=document.getElementById("cvTo").value;if(!a||a<=0){toast("Enter amount");return}document.getElementById("cvOut").textContent="Loading...";document.getElementById("cvRate").textContent="";document.getElementById("cvResult").style.display="block";fetch("https://api.exchangerate-api.com/v4/latest/"+f).then(function(x){return x.json()}).then(function(d){if(d&&d.rates&&d.rates[t]){var lr=d.rates[t];var res=a*lr;document.getElementById("cvOut").textContent=(C[t]||t+" ")+res.toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+lr.toFixed(4)+" "+t+" (live)";st.lastRateUpdate=new Date().toISOString();save();updateRateTimestamp()}else{document.getElementById("cvOut").textContent="Rate unavailable";document.getElementById("cvRate").textContent=""}}).catch(function(){var r=RATES[f]?RATES[f][t]:null;if(r){var res=a*r;document.getElementById("cvOut").textContent=(C[t]||t+" ")+res.toFixed(2);document.getElementById("cvRate").textContent="1 "+f+" = "+r.toFixed(4)+" "+t+" (offline)"}else{document.getElementById("cvOut").textContent="Offline - rate unavailable";document.getElementById("cvRate").textContent=""}})};
+
 function monthYM(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")}
 function getExp(c){var ym=monthYM(),t=0;for(var i=0;i<st.transactions.length;i++){var x=st.transactions[i];if(x.date.indexOf(ym)===0&&x.type==="expense"&&(!c||x.category===c))t+=x.amount}return t}
 function getInc(){var ym=monthYM(),t=0;for(var i=0;i<st.transactions.length;i++){var x=st.transactions[i];if(x.date.indexOf(ym)===0&&x.type==="income")t+=x.amount}return t}
@@ -500,77 +306,40 @@ function getInc(){var ym=monthYM(),t=0;for(var i=0;i<st.transactions.length;i++)
 function updateAll(){var s=sym(),inc=getInc(),exp=getExp(),net=inc-exp;
 document.getElementById("hdrIncome").textContent=s+inc.toFixed(0);
 document.getElementById("hdrExpense").textContent=s+exp.toFixed(0);
-document.getElementById("hdrNet").textContent=s+net.toFixed(0);if(net>=0){document.getElementById("hdrNet").style.color="#81ECEC"}else{document.getElementById("hdrNet").style.color="#FAB1A0"}
+document.getElementById("hdrNet").textContent=s+net.toFixed(0);
+if(net>=0){document.getElementById("hdrNet").style.color="#81ECEC"}else{document.getElementById("hdrNet").style.color="#FAB1A0"}
 updateHistory();updateBudgets();updateForecast();updateRecurring();updateGoals()}
 
 function updateHistory(){var el=document.getElementById("txList");var sorted=st.transactions.slice().sort(function(a,b){return b.id-a.id}).slice(0,40);if(!sorted.length){el.innerHTML='<div class="empty">No transactions yet.</div>';return}var s=sym(),h="";for(var i=0;i<sorted.length;i++){var t=sorted[i],icon=IC[t.category]||IC["Other"];var cls=t.type==="income"?"tx-income-amt":"tx-expense";var pfx=t.type==="income"?"+":"-";h+='<div class="tx-item"><div class="tx-icon">'+icon+'</div><div class="tx-details"><div class="tx-desc">'+t.description+'</div><div class="tx-cat">'+t.category+' &middot; '+t.date+'</div></div><div class="tx-amount '+cls+'">'+pfx+s+t.amount.toFixed(2)+'</div><button class="del-btn" onclick="deleteTx('+t.id+')">&times;</button></div>'}el.innerHTML=h}
 
-function updateBudgets(){var el=document.getElementById("budList"),sEl=document.getElementById("budStats");var cats=Object.keys(st.budgets);if(!cats.length){el.innerHTML='<div class="empty">No budgets set.</div>';sEl.innerHTML="";return}var s=sym(),ts=0,tb=0;for(var i=0;i<cats.length;i++){ts+=getExp(cats[i]);tb+=st.budgets[cats[i]]}sEl.innerHTML='<div class="stats-row"><div class="stat-card"><div class="stat-val">'+s+ts.toFixed(0)+'</div><div class="stat-lbl">Spent</div></div><div class="stat-card"><div class="stat-val">'+s+tb.toFixed(0)+'</div><div class="stat-lbl">Budget</div></div><div class="stat-card"><div class="stat-val">'+(tb>0?Math.round((ts/tb)*100):0)+'%</div><div class="stat-lbl">Used</div></div></div>';var h="";for(var i=0;i<cats.length;i++){var c=cats[i],b=st.budgets[c],sp=getExp(c);var p=Math.min(Math.round((sp/b)*100),100);var cl=p<70?"pg-green":p<90?"pg-amber":"pg-red";h+='<div class="budget-item"><div class="budget-header"><span class="budget-cat">'+(IC[c]||"")+" "+c+'</span><span class="budget-amounts">'+s+sp.toFixed(0)+'/'+s+b.toFixed(0)+' <button class="del-btn" onclick="editBudget(\''+c+'\','+b+')" title="Edit">✏️</button><button class="del-btn" onclick="deleteBudget(\''+c+'\')" title="Delete">&times;</button></span></div><div class="progress-bar"><div class="progress-fill '+cl+'" style="width:'+p+'%"></div></div></div>'}el.innerHTML=h}
+function updateBudgets(){var el=document.getElementById("budList"),sEl=document.getElementById("budStats");var cats=Object.keys(st.budgets);if(!cats.length){el.innerHTML='<div class="empty">No budgets set.</div>';sEl.innerHTML="";return}var s=sym(),ts=0,tb=0;for(var i=0;i<cats.length;i++){ts+=getExp(cats[i]);tb+=st.budgets[cats[i]]}sEl.innerHTML='<div class="stats-row"><div class="stat-card"><div class="stat-val">'+s+ts.toFixed(0)+'</div><div class="stat-lbl">Spent</div></div><div class="stat-card"><div class="stat-val">'+s+tb.toFixed(0)+'</div><div class="stat-lbl">Budget</div></div><div class="stat-card"><div class="stat-val">'+(tb>0?Math.round((ts/tb)*100):0)+'%</div><div class="stat-lbl">Used</div></div></div>';var h="";for(var i=0;i<cats.length;i++){var c=cats[i],b=st.budgets[c],sp=getExp(c);var p=Math.min(Math.round((sp/b)*100),100);var cl=p<70?"pg-green":p<90?"pg-amber":"pg-red";h+='<div class="budget-item"><div class="budget-header"><span class="budget-cat">'+(IC[c]||"")+" "+c+'</span><span class="budget-amounts">'+s+sp.toFixed(0)+'/'+s+b.toFixed(0)+' <button class="del-btn" onclick="editBudget(\''+c+'\','+b+')" title="Edit">\u270f\ufe0f</button><button class="del-btn" onclick="deleteBudget(\''+c+'\')" title="Delete">&times;</button></span></div><div class="progress-bar"><div class="progress-fill '+cl+'" style="width:'+p+'%"></div></div></div>'}el.innerHTML=h}
 
-function updateForecast(){var el=document.getElementById("fcList"),mEl=document.getElementById("fcMeta");var cats=Object.keys(st.budgets);if(!cats.length||!st.transactions.length){el.innerHTML='<div class="empty">Add expenses and budgets to see forecast.</div>';mEl.innerHTML="";return}var now=new Date(),dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();var de=Math.max(now.getDate(),1),dl=dim-de;mEl.innerHTML='<div class="stats-row"><div class="stat-card"><div class="stat-val">'+de+'</div><div class="stat-lbl">Days in</div></div><div class="stat-card"><div class="stat-val">'+dl+'</div><div class="stat-lbl">Left</div></div><div class="stat-card"><div class="stat-val">'+dim+'</div><div class="stat-lbl">Total</div></div></div>';var s=sym(),h="";for(var i=0;i<cats.length;i++){var c=cats[i],b=st.budgets[c],sp=getExp(c);var pr=(sp/de)*dim;var bg,bc;if(pr<b*.8){bg="On track";bc="bg-green"}else if(pr<=b){bg="Watch";bc="bg-amber"}else{bg="Over";bc="bg-red"}h+='<div class="forecast-item"><div class="fc-badge '+bc+'">'+bg+'</div><div class="fc-details"><div class="fc-cat">'+c+'</div><div class="fc-nums">'+s+sp.toFixed(0)+' &rarr; '+s+pr.toFixed(0)+' of '+s+b.toFixed(0)+'</div></div></div>'}el.innerHTML=h}
+function updateForecast(){var el=document.getElementById("fcList"),mEl=document.getElementById("fcMeta");var cats=Object.keys(st.budgets);if(!cats.length||!st.transactions.length){el.innerHTML='<div class="empty">Add expenses and budgets to see forecast.</div>';mEl.innerHTML="";if(forecastChart){forecastChart.destroy();forecastChart=null}return}
+var now=new Date(),dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();var de=Math.max(now.getDate(),1),dl=dim-de;
+mEl.innerHTML='<div class="stats-row"><div class="stat-card"><div class="stat-val">'+de+'</div><div class="stat-lbl">Days in</div></div><div class="stat-card"><div class="stat-val">'+dl+'</div><div class="stat-lbl">Left</div></div><div class="stat-card"><div class="stat-val">'+dim+'</div><div class="stat-lbl">Total</div></div></div>';
+var s=sym();
+// Chart data
+var balance=getInc()-getExp();var avgDaily=de>0?getExp()/de:0;var labels=[];var balances=[];
+for(var d=0;d<=dl;d++){var dt=new Date();dt.setDate(dt.getDate()+d);labels.push((dt.getMonth()+1)+"/"+dt.getDate());balances.push(Math.round(balance-(avgDaily*d)))}
+// Render chart
+try{var canvas=document.getElementById("forecastChart");if(canvas&&typeof Chart!=="undefined"){var ctx=canvas.getContext("2d");if(forecastChart)forecastChart.destroy();forecastChart=new Chart(ctx,{type:"line",data:{labels:labels,datasets:[{label:"Projected Balance",data:balances,borderColor:"#6C5CE7",backgroundColor:"rgba(108,92,231,0.1)",fill:true,tension:0.3,pointRadius:2,pointBackgroundColor:"#6C5CE7"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return s+v}}},x:{ticks:{maxTicksLimit:7}}}}})}}catch(e){}
+// Category forecast list
+var h="";for(var i=0;i<cats.length;i++){var c=cats[i],b=st.budgets[c],sp=getExp(c);var pr=(sp/de)*dim;var bg,bc;if(pr<b*.8){bg="On track";bc="bg-green"}else if(pr<=b){bg="Watch";bc="bg-amber"}else{bg="Over";bc="bg-red"}h+='<div class="forecast-item"><div class="fc-badge '+bc+'">'+bg+'</div><div class="fc-details"><div class="fc-cat">'+c+'</div><div class="fc-nums">'+s+sp.toFixed(0)+' &rarr; '+s+pr.toFixed(0)+' of '+s+b.toFixed(0)+'</div></div></div>'}el.innerHTML=h}
 
 function updateRecurring(){var el=document.getElementById("recurringList");if(!st.recurring.length){el.innerHTML='<div class="empty">No bills added.</div>';return}var s=sym(),h="";for(var i=0;i<st.recurring.length;i++){var r=st.recurring[i];h+='<div class="recurring-item"><div class="rec-details"><div class="rec-name">'+(IC[r.category]||"")+" "+r.name+'</div><div class="rec-meta">'+r.frequency+' &middot; Day '+r.dueDay+'</div></div><div class="rec-amount">'+s+r.amount.toFixed(2)+'</div><button class="del-btn" onclick="deleteRecurring('+r.id+')">&times;</button></div>'}var total=0;for(var i=0;i<st.recurring.length;i++){var r=st.recurring[i];if(r.frequency==="monthly")total+=r.amount;else if(r.frequency==="weekly")total+=r.amount*4.33;else total+=r.amount/12}h+='<div style="margin-top:10px;padding-top:10px;border-top:2px solid var(--border);display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>Monthly total</span><span>'+s+total.toFixed(2)+'</span></div>';el.innerHTML=h}
 
 function updateGoals(){var el=document.getElementById("goalList");if(!st.goals.length){el.innerHTML='<div class="empty">No savings goals yet.</div>';return}var s=sym(),h="";for(var i=0;i<st.goals.length;i++){var g=st.goals[i];var p=Math.min(Math.round((g.saved/g.target)*100),100);h+='<div class="goal-item"><div class="goal-header"><span class="goal-name">'+g.name+'</span><span class="goal-amount">'+p+'%</span></div><div class="goal-progress"><div class="goal-fill" style="width:'+p+'%"></div></div><div class="goal-meta"><span>'+s+g.saved.toFixed(0)+' / '+s+g.target.toFixed(0)+'</span><span><button onclick="addToGoal('+g.id+')" style="background:var(--primary);color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">+Add</button> <button onclick="deleteGoal('+g.id+')" style="background:none;border:none;color:var(--danger);font-size:14px;cursor:pointer">&times;</button></span></div></div>'}el.innerHTML=h}
 
-// Auto-refresh FX rates on app open
-function refreshRates(){
-    try{
-        if(window.self===window.top&&navigator.onLine){
-            var base=st.currency||"GBP";
-            fetch("https://api.exchangerate-api.com/v4/latest/"+base).then(function(r){return r.json()}).then(function(d){
-                if(d&&d.rates){
-                    var targets=["GBP","USD","EUR","NGN"];
-                    if(!RATES[base])RATES[base]={};
-                    for(var i=0;i<targets.length;i++){
-                        if(d.rates[targets[i]])RATES[base][targets[i]]=d.rates[targets[i]];
-                    }
-                    // Also update cross-rates
-                    for(var i=0;i<targets.length;i++){
-                        var t=targets[i];
-                        if(t===base)continue;
-                        if(!RATES[t])RATES[t]={};
-                        RATES[t][base]=1/d.rates[t];
-                        for(var j=0;j<targets.length;j++){
-                            if(targets[j]!==t&&d.rates[targets[j]]&&d.rates[t]){
-                                RATES[t][targets[j]]=d.rates[targets[j]]/d.rates[t];
-                            }
-                        }
-                    }
-                    st.lastRateUpdate=new Date().toISOString();save();
-                    updateRateTimestamp();
-                }
-            }).catch(function(){});
-        }
-    }catch(e){}
-}
-function updateRateTimestamp(){
-    var el=document.getElementById("rateTime");
-    if(!el)return;
-    if(st.lastRateUpdate){
-        var d=new Date(st.lastRateUpdate);
-        var now=new Date();
-        var diff=Math.round((now-d)/60000);
-        var label="";
-        if(diff<1)label="Just now";
-        else if(diff<60)label=diff+"m ago";
-        else if(diff<1440)label=Math.round(diff/60)+"h ago";
-        else label=Math.round(diff/1440)+"d ago";
-        el.textContent="Rates updated: "+label;
-        el.style.display="block";
-    }
-}
+function refreshRates(){try{if(window.self===window.top&&navigator.onLine){var base=st.currency||"GBP";fetch("https://api.exchangerate-api.com/v4/latest/"+base).then(function(r){return r.json()}).then(function(d){if(d&&d.rates){var targets=Object.keys(C);if(!RATES[base])RATES[base]={};for(var i=0;i<targets.length;i++){if(d.rates[targets[i]])RATES[base][targets[i]]=d.rates[targets[i]]}st.lastRateUpdate=new Date().toISOString();save();updateRateTimestamp()}}).catch(function(){})}}catch(e){}}
+function updateRateTimestamp(){var el=document.getElementById("rateTime");if(!el)return;if(st.lastRateUpdate){var d=new Date(st.lastRateUpdate);var now=new Date();var diff=Math.round((now-d)/60000);var label="";if(diff<1)label="Just now";else if(diff<60)label=diff+"m ago";else if(diff<1440)label=Math.round(diff/60)+"h ago";else label=Math.round(diff/1440)+"d ago";el.textContent="Rates updated: "+label;el.style.display="block"}}
 
-// // Offline indicator
 window.addEventListener("offline",function(){document.getElementById("offlinePill").style.display="block"});
 window.addEventListener("online",function(){document.getElementById("offlinePill").style.display="none"});
 if(!navigator.onLine)document.getElementById("offlinePill").style.display="block";
-
-// Service worker (production only)
 try{if("serviceWorker" in navigator&&window.self===window.top){navigator.serviceWorker.register("sw.js").catch(function(){})}}catch(e){}
 
 initDates();initPfx();updateAll();refreshRates();
 })();
-</script>
+<\/script>
 </body>
 </html>
