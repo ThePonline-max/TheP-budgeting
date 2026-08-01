@@ -72,14 +72,17 @@ body {
   position:fixed; bottom:0; left:0; right:0; z-index:100;
   background:var(--card); border-top:1px solid var(--border);
   padding: 8px 4px calc(var(--safe-bottom) + 8px);
-  display:flex; justify-content:space-around;
+  display:flex; justify-content:flex-start; gap:4px;
   transition: background 0.3s, border-color 0.3s;
+  overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  padding-bottom: calc(var(--safe-bottom) + 6px);
 }
+.nav::-webkit-scrollbar { display:none; }
 .nav button {position:relative;
   background:none; border:none; color:var(--muted); font-size:10px;
   display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer;
   padding:4px 8px; border-radius:8px; transition: color 0.2s;
-}
+; flex-shrink:0; white-space:nowrap}
 .nav button .nav-icon { font-size:20px; }
 .nav button.active { color:var(--accent); }
 .tab-content { display:none; padding:16px; max-width:500px; margin:0 auto; }
@@ -311,6 +314,7 @@ body {
     <div class="form-group">
       <label>Category</label>
       <select id="inp-category">
+        <option value="auto" selected>Auto-detect</option>
         <option value="Food & Dining">🍕 Food & Dining</option>
         <option value="Transport">🚗 Transport</option>
         <option value="Shopping">🛍️ Shopping</option>
@@ -880,8 +884,10 @@ body {
     var currency = document.getElementById('inp-currency').value;
     if (!desc || !amount || amount <= 0) return alert('Please fill in description and amount.');
     if (transactionType === 'expense') {
-      var autoCat = autoCategory(desc);
-      if (autoCat && category === 'Other') category = autoCat;
+      if (category === 'auto') {
+        var autoCat = autoCategory(desc);
+        category = autoCat || 'Other';
+      }
     }
     var tx = {
       id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
@@ -1624,7 +1630,7 @@ body {
     var container = document.getElementById('insights-container');
     var insights = generateInsights();
     if (!insights.length) {
-      container.innerHTML = '<div class="insight-card" style="color:var(--muted);">Add some transactions to see insights!</div>';
+      container.innerHTML = '<div class="insight-card">\uD83D\uDCA1 Log your first expense to unlock personalized spending insights</div><div class="insight-card">\uD83C\uDF1F Tips appear here based on your spending patterns</div>';
       return;
     }
     container.innerHTML = insights.map(function(ins) {
