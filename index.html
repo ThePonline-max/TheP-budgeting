@@ -457,6 +457,10 @@
         }
 
         .nav-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
             flex-shrink: 0;
             padding: 8px 12px;
             border: none;
@@ -727,6 +731,13 @@
                 padding-bottom: 0;
             }
         }
+    
+        .nav-icon {
+            display: block;
+            font-size: 18px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
     </style>
 </head>
 <body>
@@ -907,7 +918,11 @@
                         </div>
                         <button class="btn btn-primary btn-small" onclick="App.applyCustomRange()">Apply</button>
                     </div>
-                    <div id="reportBreakdown"></div>
+                    <div id="frappe-pie" style="display:none"></div>
+                    <div id="frappe-bar" style="display:none"></div>
+                    <div id="css-reports-fallback">
+                        <div id="reportBreakdown"></div>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-title">Export Report</div>
@@ -1016,7 +1031,10 @@
                 <div class="card">
                     <button class="btn btn-primary" onclick="App.takeSnapshot()" style="margin-bottom:12px">📸 Take Snapshot</button>
                     <div class="card-title">Trend (Last 6 Snapshots)</div>
-                    <div id="snapshotTable"></div>
+                    <div id="frappe-nw" style="display:none"></div>
+                    <div id="css-nw-fallback">
+                        <div id="snapshotTable"></div>
+                    </div>
                 </div>
             </div>
 
@@ -1025,7 +1043,10 @@
                 <div class="card">
                     <div class="card-title">30-Day Forecast</div>
                     <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Based on your average daily spending</p>
-                    <div id="forecastDisplay"></div>
+                    <div id="frappe-forecast" style="display:none"></div>
+                    <div id="css-forecast-fallback">
+                        <div id="forecastDisplay"></div>
+                    </div>
                 </div>
             </div>
 
@@ -1096,16 +1117,16 @@
         <!-- Bottom Navigation -->
         <div class="bottom-nav">
             <div class="nav-scroll">
-                <button class="nav-tab active" onclick="App.switchTab('add')">Add</button>
-                <button class="nav-tab" onclick="App.switchTab('log')">Log</button>
-                <button class="nav-tab" onclick="App.switchTab('budget')">Budget</button>
-                <button class="nav-tab" onclick="App.switchTab('reports')">Reports<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('goals')">Goals<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('debt')">Debt<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('worth')">Worth<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('forecast')">Forecast<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('bills')">Bills<span class="lock-badge">🔒</span></button>
-                <button class="nav-tab" onclick="App.switchTab('fx')">FX<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab active" onclick="App.switchTab('add')"><span class="nav-icon">➕</span>Add</button>
+                <button class="nav-tab" onclick="App.switchTab('log')"><span class="nav-icon">📋</span>Log</button>
+                <button class="nav-tab" onclick="App.switchTab('budget')"><span class="nav-icon">💰</span>Budget</button>
+                <button class="nav-tab" onclick="App.switchTab('reports')"><span class="nav-icon">📊</span>Reports<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('goals')"><span class="nav-icon">🎯</span>Goals<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('debt')"><span class="nav-icon">💸</span>Debt<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('worth')"><span class="nav-icon">📈</span>Worth<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('forecast')"><span class="nav-icon">📉</span>Forecast<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('bills')"><span class="nav-icon">🔁</span>Bills<span class="lock-badge">🔒</span></button>
+                <button class="nav-tab" onclick="App.switchTab('fx')"><span class="nav-icon">💱</span>FX<span class="lock-badge">🔒</span></button>
             </div>
         </div>
 
@@ -1367,11 +1388,11 @@
                 if (tabId === "add") { renderAddTab(); }
                 else if (tabId === "log") { renderLog(); }
                 else if (tabId === "budget") { renderBudget(); }
-                else if (tabId === "reports") { renderReports(); }
+                else if (tabId === "reports") { renderReports(); renderFrappeReports(); }
                 else if (tabId === "goals") { renderGoals(); }
                 else if (tabId === "debt") { renderDebt(); }
-                else if (tabId === "worth") { renderWorth(); }
-                else if (tabId === "forecast") { renderForecast(); }
+                else if (tabId === "worth") { renderWorth(); renderFrappeNetWorth(); }
+                else if (tabId === "forecast") { renderForecast(); renderFrappeForecast(); }
                 else if (tabId === "bills") { renderBills(); }
             }
 
@@ -2490,6 +2511,255 @@
             };
 
             init();
+
+            // ===================== FRAPPE CHARTS (LAZY LOAD) =====================
+            var frappeLoaded = false;
+
+            function loadFrappeCharts() {
+                var s = document.createElement("script");
+                s.src = "https://cdn.jsdelivr.net/npm/frappe-charts@2.0.0/dist/frappe-charts.umd.min.js";
+                s.onload = function() {
+                    frappeLoaded = true;
+                    refreshFrappeCharts();
+                };
+                s.onerror = function() {
+                    frappeLoaded = false;
+                };
+                document.head.appendChild(s);
+            }
+
+            function refreshFrappeCharts() {
+                if (!frappeLoaded) return;
+                renderFrappeForecast();
+                renderFrappeReports();
+                renderFrappeNetWorth();
+            }
+
+            function renderFrappeForecast() {
+                if (!frappeLoaded) return;
+                try {
+                    var container = document.getElementById("frappe-forecast");
+                    if (!container) return;
+
+                    // Calculate average daily spending over last 30 days
+                    var now = new Date();
+                    var thirtyAgo = new Date(now);
+                    thirtyAgo.setDate(thirtyAgo.getDate() - 30);
+                    var totalSpent = 0;
+                    var totalIncome = 0;
+
+                    for (var i = 0; i < data.transactions.length; i++) {
+                        var tx = data.transactions[i];
+                        var d = new Date(tx.date);
+                        if (d >= thirtyAgo && d <= now) {
+                            if (tx.type === "expense") {
+                                totalSpent += tx.amount;
+                            } else {
+                                totalIncome += tx.amount;
+                            }
+                        }
+                    }
+
+                    var avgDaily = totalSpent / 30;
+                    var currentBalance = totalIncome - totalSpent;
+                    if (currentBalance < 0) currentBalance = 0;
+
+                    if (avgDaily === 0 && currentBalance === 0) return;
+
+                    // Project 30 days
+                    var labels = [];
+                    var values = [];
+                    var bal = currentBalance;
+                    for (var day = 1; day <= 30; day++) {
+                        bal -= avgDaily;
+                        if (bal < 0) bal = 0;
+                        var futureDate = new Date(now);
+                        futureDate.setDate(futureDate.getDate() + day);
+                        labels.push(futureDate.getDate() + "/" + (futureDate.getMonth() + 1));
+                        values.push(Math.round(bal * 100) / 100);
+                    }
+
+                    container.innerHTML = "";
+                    new frappe.Chart(container, {
+                        type: "line",
+                        height: 220,
+                        colors: ["#7C3AED"],
+                        data: {
+                            labels: labels,
+                            datasets: [{ name: "Projected Balance", values: values }]
+                        },
+                        axisOptions: {
+                            xIsSeries: true,
+                            xAxisMode: "tick"
+                        },
+                        lineOptions: {
+                            regionFill: 1,
+                            hideDots: 0
+                        },
+                        tooltipOptions: {
+                            formatTooltipY: function(d) { return "\u00a3" + d.toFixed(2); }
+                        }
+                    });
+
+                    container.style.display = "block";
+                    var fallback = document.getElementById("css-forecast-fallback");
+                    if (fallback) fallback.style.display = "none";
+                } catch (e) {
+                    // Frappe Charts failed, CSS fallback stays visible
+                }
+            }
+
+            function renderFrappeReports() {
+                if (!frappeLoaded) return;
+                try {
+                    var pieContainer = document.getElementById("frappe-pie");
+                    var barContainer = document.getElementById("frappe-bar");
+                    if (!pieContainer || !barContainer) return;
+
+                    var dates = getReportDates();
+                    var catSpend = {};
+                    var dailySpend = {};
+                    var total = 0;
+
+                    for (var i = 0; i < data.transactions.length; i++) {
+                        var tx = data.transactions[i];
+                        if (tx.type === "expense") {
+                            var d = new Date(tx.date);
+                            if (d >= dates.from && d <= dates.to) {
+                                catSpend[tx.category] = (catSpend[tx.category] || 0) + tx.amount;
+                                dailySpend[tx.date] = (dailySpend[tx.date] || 0) + tx.amount;
+                                total += tx.amount;
+                            }
+                        }
+                    }
+
+                    if (total === 0) return;
+
+                    // Pie/Donut chart for category breakdown
+                    var catNames = [];
+                    var catValues = [];
+                    var cat;
+                    for (cat in catSpend) {
+                        if (catSpend.hasOwnProperty(cat)) {
+                            catNames.push(cat);
+                            catValues.push(Math.round(catSpend[cat] * 100) / 100);
+                        }
+                    }
+
+                    pieContainer.innerHTML = "";
+                    new frappe.Chart(pieContainer, {
+                        type: "pie",
+                        height: 220,
+                        colors: categoryColors.slice(0, catNames.length),
+                        data: {
+                            labels: catNames,
+                            datasets: [{ values: catValues }]
+                        },
+                        tooltipOptions: {
+                            formatTooltipY: function(d) { return "\u00a3" + d.toFixed(2); }
+                        }
+                    });
+
+                    // Bar chart for daily spending
+                    var dayKeys = [];
+                    var dayKey;
+                    for (dayKey in dailySpend) {
+                        if (dailySpend.hasOwnProperty(dayKey)) {
+                            dayKeys.push(dayKey);
+                        }
+                    }
+                    dayKeys.sort();
+
+                    var dayLabels = [];
+                    var dayValues = [];
+                    for (var k = 0; k < dayKeys.length; k++) {
+                        var dateObj = new Date(dayKeys[k]);
+                        dayLabels.push(dateObj.getDate() + "/" + (dateObj.getMonth() + 1));
+                        dayValues.push(Math.round(dailySpend[dayKeys[k]] * 100) / 100);
+                    }
+
+                    barContainer.innerHTML = "";
+                    new frappe.Chart(barContainer, {
+                        type: "bar",
+                        height: 200,
+                        colors: ["#3B82F6"],
+                        data: {
+                            labels: dayLabels,
+                            datasets: [{ name: "Daily Spending", values: dayValues }]
+                        },
+                        axisOptions: {
+                            xIsSeries: true,
+                            xAxisMode: "tick"
+                        },
+                        tooltipOptions: {
+                            formatTooltipY: function(d) { return "\u00a3" + d.toFixed(2); }
+                        }
+                    });
+
+                    pieContainer.style.display = "block";
+                    barContainer.style.display = "block";
+                    var fallback = document.getElementById("css-reports-fallback");
+                    if (fallback) fallback.style.display = "none";
+                } catch (e) {
+                    // Frappe Charts failed, CSS fallback stays visible
+                }
+            }
+
+            function renderFrappeNetWorth() {
+                if (!frappeLoaded) return;
+                try {
+                    var container = document.getElementById("frappe-nw");
+                    if (!container) return;
+
+                    var snaps = data.snapshots.slice(-6);
+                    if (snaps.length < 2) return;
+
+                    var labels = [];
+                    var assetVals = [];
+                    var liabVals = [];
+                    var netVals = [];
+                    for (var i = 0; i < snaps.length; i++) {
+                        labels.push(snaps[i].date);
+                        assetVals.push(Math.round(snaps[i].assets * 100) / 100);
+                        liabVals.push(Math.round(snaps[i].liabilities * 100) / 100);
+                        netVals.push(Math.round(snaps[i].net * 100) / 100);
+                    }
+
+                    container.innerHTML = "";
+                    new frappe.Chart(container, {
+                        type: "line",
+                        height: 220,
+                        colors: ["#10B981", "#EF4444", "#7C3AED"],
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                { name: "Assets", values: assetVals },
+                                { name: "Liabilities", values: liabVals },
+                                { name: "Net Worth", values: netVals }
+                            ]
+                        },
+                        axisOptions: {
+                            xIsSeries: true
+                        },
+                        lineOptions: {
+                            regionFill: 1,
+                            hideDots: 0
+                        },
+                        tooltipOptions: {
+                            formatTooltipY: function(d) { return "\u00a3" + d.toFixed(2); }
+                        }
+                    });
+
+                    container.style.display = "block";
+                    var fallback = document.getElementById("css-nw-fallback");
+                    if (fallback) fallback.style.display = "none";
+                } catch (e) {
+                    // Frappe Charts failed, CSS fallback stays visible
+                }
+            }
+
+            // Load Frappe Charts lazily after init completes
+            setTimeout(loadFrappeCharts, 1000);
 
         } catch (e) {
             console.error("App initialization error:", e);
