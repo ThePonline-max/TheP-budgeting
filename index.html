@@ -48,7 +48,7 @@
             color: var(--text);
             min-height: 100vh;
             transition: background 0.3s, color 0.3s;
-            padding-top: var(--safe-top);
+            padding-top: calc(env(safe-area-inset-top, 0px) + 60px);
             padding-left: var(--safe-left);
             padding-right: var(--safe-right);
         }
@@ -61,32 +61,23 @@
             flex-direction: column;
         }
 
-        @media (min-width: 600px) {
-            .app-container {
-                max-width: 480px;
-            }
-        }
+        
 
-        @media (min-width: 1024px) {
-            .app-container {
-                max-width: 420px;
-                box-shadow: 0 0 40px rgba(0,0,0,0.1);
-                min-height: 100vh;
-            }
-        }
+        
 
         /* Header */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
+            padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
             background: linear-gradient(135deg, #7C3AED, #6D28D9);
             color: #fff;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
-            transition: background 0.3s, border-color 0.3s;
         }
 
         .header-btn {
@@ -101,12 +92,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+         color: #fff;
         }
 
         .header-title {
             font-size: 17px;
             font-weight: 700;
-            color: #fff;
+            color: var(--text);
+         color: #fff;
         }
 
         /* Main Content */
@@ -431,19 +424,9 @@
             transition: background 0.3s, border-color 0.3s;
         }
 
-        @media (min-width: 600px) {
-            .bottom-nav {
-                left: 50%;
-                transform: translateX(-50%);
-                max-width: 480px;
-            }
-        }
+        
 
-        @media (min-width: 1024px) {
-            .bottom-nav {
-                max-width: 420px;
-            }
-        }
+        
 
         .nav-scroll {
             display: flex;
@@ -738,6 +721,85 @@
             line-height: 1;
             margin-bottom: 2px;
         }
+    
+        .pro-upgrade-btn {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: #fff;
+            border: none;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+        .pro-upgrade-btn:active {
+            transform: scale(0.95);
+        }
+        .pro-upgrade-btn.hidden {
+            display: none;
+        }
+    
+        /* ======= TABLET (600px+) ======= */
+        @media (min-width: 600px) {
+            body {
+                display: flex;
+                justify-content: center;
+            }
+            .app-container {
+                max-width: 480px;
+                width: 100%;
+                min-height: 100vh;
+                border-left: 1px solid var(--border);
+                border-right: 1px solid var(--border);
+                position: relative;
+            }
+            .header {
+                max-width: 480px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 0 0 16px 16px;
+            }
+            .bottom-nav {
+                max-width: 480px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 16px 16px 0 0;
+                border-left: 1px solid var(--border);
+                border-right: 1px solid var(--border);
+            }
+            .settings-overlay,
+            .overlay {
+                max-width: 480px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ======= DESKTOP (1024px+) ======= */
+        @media (min-width: 1024px) {
+            .app-container {
+                max-width: 420px;
+                box-shadow: 0 0 60px rgba(0,0,0,0.08);
+                border-radius: 24px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                min-height: calc(100vh - 40px);
+                overflow: hidden;
+            }
+            .header {
+                max-width: 420px;
+                border-radius: 0;
+            }
+            .bottom-nav {
+                max-width: 420px;
+                border-radius: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -746,7 +808,7 @@
         <div class="header">
             <button class="header-btn" onclick="App.openSettings()">⚙️</button>
             <span class="header-title">Your Budgeting</span>
-            <button class="header-btn" onclick="App.openPro()">✨</button>
+            <button class="pro-upgrade-btn" onclick="App.openPro()">Upgrade PRO</button>
         </div>
 
         <!-- Main Content -->
@@ -1145,6 +1207,14 @@
                         <button class="theme-opt" onclick="App.setTheme('dark')">Dark</button>
                     </div>
                 </div>
+                <div class="form-group" style="margin-top:16px;">
+                    <label class="form-label">Backup &amp; Recovery 🔒</label>
+                    <button class="btn btn-outline" onclick="App.exportBackup()" style="margin-bottom:8px;width:100%;">📥 Export Backup</button>
+                    <button class="btn btn-outline" onclick="App.importBackup()" style="width:100%;">📤 Import Backup</button>
+                    <input type="file" id="backupFileInput" accept=".json" style="display:none;" onchange="App.handleBackupFile(event)">
+                    <p style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center;">Export saves all your data as a JSON file.<br><strong>Where is my backup saved?</strong><br>iPhone: Files app (On My iPhone or iCloud Drive)<br>Android: Downloads folder or Google Drive<br>Desktop: Downloads folder<br><br>Import restores from a previously saved backup file.</p>
+                </div>
+
                 <button class="btn btn-outline" onclick="App.closeSettingsDirect()" style="margin-top:12px">Close</button>
             </div>
         </div>
@@ -1406,7 +1476,13 @@
                 for (var i = 0; i < badges.length; i++) {
                     badges[i].style.display = data.isPro ? "none" : "inline";
                 }
-            }
+            
+                var proBtn = document.querySelector(".pro-upgrade-btn");
+                if (proBtn) {
+                    if (data.isPro) { proBtn.classList.add("hidden"); }
+                    else { proBtn.classList.remove("hidden"); }
+                }
+}
 
             // ===================== ADD TAB =====================
             var txType = "expense";
@@ -1469,35 +1545,35 @@
             }
 
             function renderBalance() {
-    var income = 0;
-    var expenses = 0;
-    var now = new Date();
-    var month = now.getMonth();
-    var year = now.getFullYear();
+                var income = 0;
+                var expenses = 0;
+                var now = new Date();
+                var month = now.getMonth();
+                var year = now.getFullYear();
 
-    for (var i = 0; i < data.transactions.length; i++) {
-        var tx = data.transactions[i];
-        var d = new Date(tx.date);
-        if (d.getMonth() === month && d.getFullYear() === year) {
-            if (tx.type === "income") {
-                income += tx.amount;
-            } else {
-                expenses += tx.amount;
+                for (var i = 0; i < data.transactions.length; i++) {
+                    var tx = data.transactions[i];
+                    var d = new Date(tx.date);
+                    if (d.getMonth() === month && d.getFullYear() === year) {
+                        if (tx.type === "income") {
+                            income += tx.amount;
+                        } else {
+                            expenses += tx.amount;
+                        }
+                    }
+                }
+
+                var currency = "GBP";
+                var currSelect = document.getElementById("txCurrency");
+                if (currSelect && currSelect.value) {
+                    currency = currSelect.value;
+                }
+
+                document.getElementById("balIncome").textContent = formatMoney(income, currency);
+                document.getElementById("balExpenses").textContent = formatMoney(expenses, currency);
+                document.getElementById("balBalance").textContent = formatMoney(income - expenses, currency);
             }
-        }
-    }
 
-    // Use the currency currently selected in the Add form
-    var currency = "GBP";
-    var currSelect = document.getElementById("txCurrency");
-    if (currSelect && currSelect.value) {
-        currency = currSelect.value;
-    }
-
-    document.getElementById("balIncome").textContent = formatMoney(income, currency);
-    document.getElementById("balExpenses").textContent = formatMoney(expenses, currency);
-    document.getElementById("balBalance").textContent = formatMoney(income - expenses, currency);
-}
             function renderInsights() {
                 var container = document.getElementById("insightsContainer");
                 var insights = [];
@@ -2482,7 +2558,71 @@
             }
 
             // ===================== EXPOSE API =====================
-            window.App = {
+            
+            function exportBackup() {
+                if (!data.isPro) { App.openPro(); return; }
+
+                var backupData = JSON.stringify(data, null, 2);
+                var filename = "your-budgeting-backup-" + todayStr() + ".json";
+                if (navigator.share) {
+                    try {
+                        var file = new File([backupData], filename, { type: "application/json" });
+                        navigator.share({ files: [file], title: "Your Budgeting Backup" }).catch(function() {});
+                    } catch(e) {
+                        fallbackDownload(backupData, filename);
+                    }
+                } else {
+                    fallbackDownload(backupData, filename);
+                }
+            }
+
+            function fallbackDownload(content, filename) {
+                var blob = new Blob([content], { type: "application/json" });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            function importBackup() {
+                if (!data.isPro) { App.openPro(); return; }
+
+                document.getElementById("backupFileInput").click();
+            }
+
+            function handleBackupFile(event) {
+                var file = event.target.files[0];
+                if (!file) return;
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        var imported = JSON.parse(e.target.result);
+                        if (!imported.transactions) {
+                            alert("Invalid backup file.");
+                            return;
+                        }
+                        if (confirm("This will replace ALL your current data. Are you sure?")) {
+                            data = imported;
+                            saveData();
+                            alert("Backup restored successfully! The app will now reload.");
+                            window.location.reload();
+                        }
+                    } catch(err) {
+                        alert("Error reading backup file. Make sure it's a valid JSON backup.");
+                    }
+                };
+                reader.readAsText(file);
+                event.target.value = "";
+            }
+
+window.App = {
+                exportBackup: exportBackup,
+                importBackup: importBackup,
+                handleBackupFile: handleBackupFile,
                 switchTab: switchTab,
                 setTxType: setTxType,
                 addTransaction: addTransaction,
