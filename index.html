@@ -1469,29 +1469,35 @@
             }
 
             function renderBalance() {
-                var income = 0;
-                var expenses = 0;
-                var now = new Date();
-                var month = now.getMonth();
-                var year = now.getFullYear();
+    var income = 0;
+    var expenses = 0;
+    var now = new Date();
+    var month = now.getMonth();
+    var year = now.getFullYear();
 
-                for (var i = 0; i < data.transactions.length; i++) {
-                    var tx = data.transactions[i];
-                    var d = new Date(tx.date);
-                    if (d.getMonth() === month && d.getFullYear() === year) {
-                        if (tx.type === "income") {
-                            income += tx.amount;
-                        } else {
-                            expenses += tx.amount;
-                        }
-                    }
-                }
-
-                document.getElementById("balIncome").textContent = formatMoney(income);
-                document.getElementById("balExpenses").textContent = formatMoney(expenses);
-                document.getElementById("balBalance").textContent = formatMoney(income - expenses);
+    for (var i = 0; i < data.transactions.length; i++) {
+        var tx = data.transactions[i];
+        var d = new Date(tx.date);
+        if (d.getMonth() === month && d.getFullYear() === year) {
+            if (tx.type === "income") {
+                income += tx.amount;
+            } else {
+                expenses += tx.amount;
             }
+        }
+    }
 
+    // Use the currency currently selected in the Add form
+    var currency = "GBP";
+    var currSelect = document.getElementById("txCurrency");
+    if (currSelect && currSelect.value) {
+        currency = currSelect.value;
+    }
+
+    document.getElementById("balIncome").textContent = formatMoney(income, currency);
+    document.getElementById("balExpenses").textContent = formatMoney(expenses, currency);
+    document.getElementById("balBalance").textContent = formatMoney(income - expenses, currency);
+}
             function renderInsights() {
                 var container = document.getElementById("insightsContainer");
                 var insights = [];
