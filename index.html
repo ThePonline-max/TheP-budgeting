@@ -67,39 +67,39 @@
 
         /* Header */
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
-            background: linear-gradient(135deg, #7C3AED, #6D28D9);
-            color: #fff;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
+            padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
+            background: linear-gradient(135deg, #7C3AED, #6D28D9);
+            color: #fff;
+            text-align: center;
         }
 
         .header-btn {
+            position: absolute;
+            left: 16px;
+            top: calc(env(safe-area-inset-top, 0px) + 10px);
             width: 36px;
             height: 36px;
             border-radius: 50%;
             border: none;
-            background: var(--accent-light);
-            color: var(--accent);
+            background: rgba(255,255,255,0.15);
+            color: #fff;
             font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-         color: #fff;
+            flex-shrink: 0;
         }
 
         .header-title {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
-            color: var(--text);
-         color: #fff;
+            color: #fff;
         }
 
         /* Main Content */
@@ -723,6 +723,9 @@
         }
     
         .pro-upgrade-btn {
+            position: absolute;
+            right: 16px;
+            top: calc(env(safe-area-inset-top, 0px) + 12px);
             background: linear-gradient(135deg, #F59E0B, #D97706);
             color: #fff;
             border: none;
@@ -734,7 +737,7 @@
             letter-spacing: 0.3px;
             text-transform: uppercase;
             box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-            transition: transform 0.1s, box-shadow 0.2s;
+            flex-shrink: 0;
         }
         .pro-upgrade-btn:active {
             transform: scale(0.95);
@@ -808,7 +811,7 @@
         <div class="header">
             <button class="header-btn" onclick="App.openSettings()">⚙️</button>
             <span class="header-title">Your Budgeting</span>
-            <button class="pro-upgrade-btn" onclick="App.openPro()">Upgrade PRO ✨</button>
+            <button class="pro-upgrade-btn" onclick="App.openPro()">PRO</button>
         </div>
 
         <!-- Main Content -->
