@@ -72,34 +72,31 @@
             left: 0;
             right: 0;
             z-index: 100;
-            padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
+            height: calc(env(safe-area-inset-top, 0px) + 48px);
+            padding-top: env(safe-area-inset-top, 0px);
             background: linear-gradient(135deg, #7C3AED, #6D28D9);
             color: #fff;
+            line-height: 48px;
             text-align: center;
         }
 
         .header-btn {
-            position: absolute;
-            left: 16px;
-            top: calc(env(safe-area-inset-top, 0px) + 10px);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+            float: left;
+            width: 48px;
+            height: 48px;
             border: none;
-            background: rgba(255,255,255,0.15);
+            background: none;
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            line-height: 48px;
         }
 
         .header-title {
             font-size: 16px;
             font-weight: 700;
             color: #fff;
+            line-height: 48px;
         }
 
         /* Main Content */
@@ -723,28 +720,23 @@
         }
     
         .pro-upgrade-btn {
-            position: absolute;
-            right: 16px;
-            top: calc(env(safe-area-inset-top, 0px) + 12px);
+            float: right;
+            margin-top: 10px;
+            margin-right: 12px;
             background: linear-gradient(135deg, #F59E0B, #D97706);
             color: #fff;
             border: none;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 5px 10px;
+            border-radius: 12px;
             cursor: pointer;
-            letter-spacing: 0.3px;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-            flex-shrink: 0;
         }
         .pro-upgrade-btn:active {
             transform: scale(0.95);
         }
-        .pro-upgrade-btn.hidden {
-            display: none;
-        }
+        
     
         /* ======= TABLET (600px+) ======= */
         @media (min-width: 600px) {
@@ -810,8 +802,8 @@
         <!-- Header -->
         <div class="header">
             <button class="header-btn" onclick="App.openSettings()">⚙️</button>
+            <button class="pro-upgrade-btn" onclick="App.openPro()">Upgrade</button>
             <span class="header-title">Your Budgeting</span>
-            <button class="pro-upgrade-btn" onclick="App.openPro()">PRO</button>
         </div>
 
         <!-- Main Content -->
@@ -1479,13 +1471,19 @@
                 for (var i = 0; i < badges.length; i++) {
                     badges[i].style.display = data.isPro ? "none" : "inline";
                 }
-            
                 var proBtn = document.querySelector(".pro-upgrade-btn");
                 if (proBtn) {
-                    if (data.isPro) { proBtn.classList.add("hidden"); }
-                    else { proBtn.classList.remove("hidden"); }
+                    if (data.isPro) {
+                        proBtn.textContent = "\u2713 PRO";
+                        proBtn.style.background = "rgba(255,255,255,0.2)";
+                        proBtn.style.boxShadow = "none";
+                    } else {
+                        proBtn.textContent = "PRO";
+                        proBtn.style.background = "linear-gradient(135deg, #F59E0B, #D97706)";
+                        proBtn.style.boxShadow = "0 2px 8px rgba(245, 158, 11, 0.3)";
+                    }
                 }
-}
+            }
 
             // ===================== ADD TAB =====================
             var txType = "expense";
