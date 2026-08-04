@@ -31,7 +31,7 @@ workflows:
     /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily array" ios/App/App/Info.plist
     /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:0 integer 1" ios/App/App/Info.plist
     /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:1 integer 2" ios/App/App/Info.plist
-      - name: Replace app icons
+    - name: Replace app icons
         script: |
           ICON_DEST="ios/App/App/Assets.xcassets/AppIcon.appiconset"
           rm -f "$ICON_DEST"/*.png "$ICON_DEST/Contents.json"
