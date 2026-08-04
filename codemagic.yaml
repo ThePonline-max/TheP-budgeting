@@ -26,7 +26,7 @@ workflows:
       - name: Sync Capacitor
         script: npx cap sync ios
         - name: Enable iPad support
-  script: |
+   script: |
     /usr/libexec/PlistBuddy -c "Delete :UIDeviceFamily" ios/App/App/Info.plist
     /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily array" ios/App/App/Info.plist
     /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:0 integer 1" ios/App/App/Info.plist
