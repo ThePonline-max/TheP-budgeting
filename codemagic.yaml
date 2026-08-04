@@ -25,6 +25,10 @@ workflows:
         script: npx cap add ios
       - name: Sync Capacitor
         script: npx cap sync ios
+      - name: Set iOS deployment target to 15
+        script: |
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*/IPHONEOS_DEPLOYMENT_TARGET = 15.0/g' ios/App/App.xcodeproj/project.pbxproj
+          /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 15.0" ios/App/App/Info.plist 2>/dev/null || true
       - name: Enable iPad support
         script: |
           /usr/libexec/PlistBuddy -c "Delete :UIDeviceFamily" ios/App/App/Info.plist
