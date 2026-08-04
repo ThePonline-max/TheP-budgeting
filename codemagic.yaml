@@ -25,13 +25,13 @@ workflows:
         script: npx cap add ios
       - name: Sync Capacitor
         script: npx cap sync ios
-        - name: Enable iPad support
-   script: |
-    /usr/libexec/PlistBuddy -c "Delete :UIDeviceFamily" ios/App/App/Info.plist
-    /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily array" ios/App/App/Info.plist
-    /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:0 integer 1" ios/App/App/Info.plist
-    /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:1 integer 2" ios/App/App/Info.plist
-    - name: Replace app icons
+      - name: Enable iPad support
+        script: |
+          /usr/libexec/PlistBuddy -c "Delete :UIDeviceFamily" ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily array" ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:0 integer 1" ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :UIDeviceFamily:1 integer 2" ios/App/App/Info.plist
+      - name: Replace app icons
         script: |
           ICON_DEST="ios/App/App/Assets.xcassets/AppIcon.appiconset"
           rm -f "$ICON_DEST"/*.png "$ICON_DEST/Contents.json"
