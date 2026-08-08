@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Your Budgeting</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a2e;
+            background: #f8f9fa;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+        h1 {
+            font-size: 28px;
+            color: #7C3AED;
+            margin-bottom: 8px;
+        }
+        .updated {
+            font-size: 13px;
+            color: #6b6b8a;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 18px;
+            color: #1a1a2e;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #f0f0f5;
+        }
+        p, li {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            background: #f5f3ff;
+            border-left: 4px solid #7C3AED;
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        a {
+            color: #7C3AED;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5f0;
+            font-size: 13px;
+            color: #6b6b8a;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Terms of Use</h1>
+        <p class="updated">Last updated: 8 August 2026</p>
+
+        <p>Welcome to <strong>Your Budgeting</strong> ("the App"), developed by Omirin Peter ("we", "us", "our"). By downloading, installing, or using the App, you agree to these Terms of Use.</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using the App, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use the App.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>Your Budgeting is a personal finance companion app that helps you track expenses, manage budgets, set savings goals, and plan your financial future. The App operates entirely on your device — no account creation is required and no personal financial data is transmitted to our servers.</p>
+
+        <h2>3. Subscription Plans</h2>
+        <p>The App offers both free and premium (PRO) features. PRO features are available through the following subscription options:</p>
+        <ul>
+            <li><strong>Monthly:</strong> £2.99 per month</li>
+            <li><strong>Annual:</strong> £24.99 per year (save 30%)</li>
+            <li><strong>Lifetime:</strong> £39.99 one-time purchase</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Auto-Renewal:</strong> Monthly and annual subscriptions automatically renew at the end of each billing period unless cancelled at least 24 hours before the end of the current period. Your Apple ID or Google Play account will be charged for renewal within 24 hours prior to the end of the current period.
+        </div>
+
+        <h2>4. Free Trial</h2>
+        <p>If a free trial is offered, it will automatically convert to a paid subscription at the end of the trial period unless cancelled at least 24 hours before the trial expires. Any unused portion of a free trial will be forfeited when you purchase a subscription.</p>
+
+        <h2>5. Managing & Cancelling Subscriptions</h2>
+        <p>You can manage or cancel your subscription at any time:</p>
+        <ul>
+            <li><strong>iOS:</strong> Settings → [Your Name] → Subscriptions → Your Budgeting → Cancel Subscription</li>
+            <li><strong>Android:</strong> Google Play Store → Menu → Subscriptions → Your Budgeting → Cancel</li>
+        </ul>
+        <p>Cancellation takes effect at the end of the current billing period. You will retain access to PRO features until that date.</p>
+
+        <h2>6. Refunds</h2>
+        <p>Refunds are handled by Apple (App Store) or Google (Google Play) according to their respective refund policies. We do not process refunds directly. To request a refund:</p>
+        <ul>
+            <li><strong>iOS:</strong> Visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a></li>
+            <li><strong>Android:</strong> Visit Google Play → Order history → Request refund</li>
+        </ul>
+
+        <h2>7. Privacy & Data</h2>
+        <p>Your Budgeting is designed with privacy at its core:</p>
+        <ul>
+            <li>All financial data is stored <strong>locally on your device</strong> only</li>
+            <li>We do <strong>not</strong> collect, store, or transmit your personal financial information</li>
+            <li>No account creation or login is required</li>
+            <li>No bank connections or third-party data access</li>
+            <li>The App works fully offline</li>
+        </ul>
+        <p>For full details, see our <a href="https://theponline-max.github.io/TheP-budgeting/privacy-policy.html">Privacy Policy</a>.</p>
+
+        <h2>8. User Responsibilities</h2>
+        <p>You are responsible for:</p>
+        <ul>
+            <li>Maintaining backups of your data (the App provides an export/backup feature)</li>
+            <li>The accuracy of information you enter into the App</li>
+            <li>Keeping your device secure to protect your financial data</li>
+        </ul>
+
+        <h2>9. Disclaimer</h2>
+        <p>The App is provided "as is" without warranties of any kind. Your Budgeting is a budgeting tool, <strong>not</strong> financial advice. We do not provide investment, tax, legal, or accounting advice. Always consult a qualified professional for financial decisions.</p>
+
+        <h2>10. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App, including but not limited to loss of data, financial loss, or business interruption.</p>
+
+        <h2>11. Intellectual Property</h2>
+        <p>All content, features, and functionality of the App (including design, code, text, and graphics) are owned by Omirin Peter and are protected by intellectual property laws. You may not copy, modify, distribute, or reverse-engineer any part of the App.</p>
+
+        <h2>12. Changes to Terms</h2>
+        <p>We reserve the right to update these Terms at any time. We will notify users of significant changes through the App or by updating the "Last updated" date above. Continued use of the App after changes constitutes acceptance of the revised Terms.</p>
+
+        <h2>13. Governing Law</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes arising from these Terms or the use of the App shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+        <h2>14. Contact Us</h2>
+        <p>If you have any questions about these Terms, please contact us:</p>
+        <ul>
+            <li>Email: <a href="mailto:theponline30@gmail.com">theponline30@gmail.com</a></li>
+        </ul>
+
+        <div class="footer">
+            <p>&copy; 2026 Omirin Peter. All rights reserved.</p>
+            <p><a href="https://theponline-max.github.io/TheP-budgeting/privacy-policy.html">Privacy Policy</a> · <a href="https://theponline-max.github.io/TheP-budgeting/terms.html">Terms of Use</a></p>
+        </div>
+    </div>
+</body>
+</html>
