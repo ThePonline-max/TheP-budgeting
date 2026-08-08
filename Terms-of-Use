@@ -3,165 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use - Your Budgeting</title>
+    <title>EULA – Your Budgeting</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #1a1a2e;
-            background: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 1.7;
-            padding: 40px 20px;
+            color: #1d1d1f;
+            background: #ffffff;
+            padding: 0;
         }
+
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
         .container {
-            max-width: 680px;
+            max-width: 780px;
             margin: 0 auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 40px 32px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            padding: 2.5rem 1.5rem 4rem;
         }
-        h1 {
-            font-size: 28px;
-            color: #7C3AED;
-            margin-bottom: 8px;
-        }
-        .updated {
-            font-size: 13px;
-            color: #6b6b8a;
-            margin-bottom: 32px;
-        }
+
         h2 {
-            font-size: 18px;
-            color: #1a1a2e;
-            margin-top: 28px;
-            margin-bottom: 12px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #f0f0f5;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-top: 2.2rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #d2d2d7;
         }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-top: 1.4rem;
+            margin-bottom: 0.4rem;
+        }
+
         p, li {
-            font-size: 15px;
-            color: #333;
-            margin-bottom: 12px;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #424245;
         }
-        ul {
-            padding-left: 20px;
-            margin-bottom: 16px;
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
         }
+
         li {
-            margin-bottom: 8px;
+            margin-bottom: 0.4rem;
         }
-        .highlight {
-            background: #f5f3ff;
-            border-left: 4px solid #7C3AED;
-            padding: 14px 16px;
+
+        .effective-date {
+            background: #f5f5f7;
+            border-left: 4px solid #2b6cb0;
+            padding: 1rem 1.25rem;
             border-radius: 0 8px 8px 0;
-            margin: 16px 0;
-            font-size: 14px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #1d1d1f;
         }
+
+        .highlight-box {
+            background: #f5f5f7;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.2rem 0;
+        }
+
+        .important-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .important-notice strong {
+            color: #856404;
+        }
+
         a {
-            color: #7C3AED;
+            color: #0066cc;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e5f0;
-            font-size: 13px;
-            color: #6b6b8a;
             text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.85rem;
+            color: #86868b;
+            border-top: 1px solid #d2d2d7;
+        }
+
+        @media (max-width: 600px) {
+            .header { padding: 2rem 1rem; }
+            .header h1 { font-size: 1.6rem; }
+            .container { padding: 1.5rem 1rem 3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Terms of Use</h1>
-        <p class="updated">Last updated: 8 August 2026</p>
 
-        <p>Welcome to <strong>Your Budgeting</strong> ("the App"), developed by Omirin Peter ("we", "us", "our"). By downloading, installing, or using the App, you agree to these Terms of Use.</p>
+<div class="header">
+    <h1>End User License Agreement (EULA)</h1>
+    <p>Your Budgeting – Budget & Expense Tracker</p>
+</div>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using the App, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use the App.</p>
+<div class="container">
 
-        <h2>2. Description of Service</h2>
-        <p>Your Budgeting is a personal finance companion app that helps you track expenses, manage budgets, set savings goals, and plan your financial future. The App operates entirely on your device — no account creation is required and no personal financial data is transmitted to our servers.</p>
-
-        <h2>3. Subscription Plans</h2>
-        <p>The App offers both free and premium (PRO) features. PRO features are available through the following subscription options:</p>
-        <ul>
-            <li><strong>Monthly:</strong> £2.99 per month</li>
-            
-        </ul>
-
-        <div class="highlight">
-            <strong>Auto-Renewal:</strong> Monthly and annual subscriptions automatically renew at the end of each billing period unless cancelled at least 24 hours before the end of the current period. Your Apple ID or Google Play account will be charged for renewal within 24 hours prior to the end of the current period.
-        </div>
-
-        <h2>4. Free Trial</h2>
-        <p>If a free trial is offered, it will automatically convert to a paid subscription at the end of the trial period unless cancelled at least 24 hours before the trial expires. Any unused portion of a free trial will be forfeited when you purchase a subscription.</p>
-
-        <h2>5. Managing & Cancelling Subscriptions</h2>
-        <p>You can manage or cancel your subscription at any time:</p>
-        <ul>
-            <li><strong>iOS:</strong> Settings → [Your Name] → Subscriptions → Your Budgeting → Cancel Subscription</li>
-            <li><strong>Android:</strong> Google Play Store → Menu → Subscriptions → Your Budgeting → Cancel</li>
-        </ul>
-        <p>Cancellation takes effect at the end of the current billing period. You will retain access to PRO features until that date.</p>
-
-        <h2>6. Refunds</h2>
-        <p>Refunds are handled by Apple (App Store) or Google (Google Play) according to their respective refund policies. We do not process refunds directly. To request a refund:</p>
-        <ul>
-            <li><strong>iOS:</strong> Visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a></li>
-            <li><strong>Android:</strong> Visit Google Play → Order history → Request refund</li>
-        </ul>
-
-        <h2>7. Privacy & Data</h2>
-        <p>Your Budgeting is designed with privacy at its core:</p>
-        <ul>
-            <li>All financial data is stored <strong>locally on your device</strong> only</li>
-            <li>We do <strong>not</strong> collect, store, or transmit your personal financial information</li>
-            <li>No account creation or login is required</li>
-            <li>No bank connections or third-party data access</li>
-            <li>The App works fully offline</li>
-        </ul>
-        <p>For full details, see our <a href="https://theponline-max.github.io/TheP-budgeting/privacy-policy.html">Privacy Policy</a>.</p>
-
-        <h2>8. User Responsibilities</h2>
-        <p>You are responsible for:</p>
-        <ul>
-            <li>Maintaining backups of your data (the App provides an export/backup feature)</li>
-            <li>The accuracy of information you enter into the App</li>
-            <li>Keeping your device secure to protect your financial data</li>
-        </ul>
-
-        <h2>9. Disclaimer</h2>
-        <p>The App is provided "as is" without warranties of any kind. Your Budgeting is a budgeting tool, <strong>not</strong> financial advice. We do not provide investment, tax, legal, or accounting advice. Always consult a qualified professional for financial decisions.</p>
-
-        <h2>10. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App, including but not limited to loss of data, financial loss, or business interruption.</p>
-
-        <h2>11. Intellectual Property</h2>
-        <p>All content, features, and functionality of the App (including design, code, text, and graphics) are owned by Omirin Peter and are protected by intellectual property laws. You may not copy, modify, distribute, or reverse-engineer any part of the App.</p>
-
-        <h2>12. Changes to Terms</h2>
-        <p>We reserve the right to update these Terms at any time. We will notify users of significant changes through the App or by updating the "Last updated" date above. Continued use of the App after changes constitutes acceptance of the revised Terms.</p>
-
-        <h2>13. Governing Law</h2>
-        <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes arising from these Terms or the use of the App shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
-
-        <h2>14. Contact Us</h2>
-        <p>If you have any questions about these Terms, please contact us:</p>
-        <ul>
-            <li>Email: <a href="mailto:theponline30@gmail.com">theponline30@gmail.com</a></li>
-        </ul>
-
-        <div class="footer">
-            <p>&copy; 2026 Omirin Peter. All rights reserved.</p>
-            <p><a href="https://theponline-max.github.io/TheP-budgeting/privacy-policy.html">Privacy Policy</a> · <a href="https://theponline-max.github.io/TheP-budgeting/terms.html">Terms of Use</a></p>
-        </div>
+    <div class="effective-date">
+        <strong>Effective Date:</strong> 8 August 2026<br>
+        <strong>Last Updated:</strong> 8 August 2026
     </div>
+
+    <div class="important-notice">
+        <strong>PLEASE READ THIS AGREEMENT CAREFULLY.</strong> By downloading, installing, or using this application, you agree to be bound by the terms and conditions of this End User License Agreement. If you do not agree to the terms of this EULA, do not download, install, or use the Application.
+    </div>
+
+    <h2>1. Acknowledgement</h2>
+    <p>This End User License Agreement ("EULA") is a legal agreement between you ("End User" or "you") and <strong>Peter Omirin</strong> ("Developer", "Licensor", "we", "us", or "our") for the use of <strong>Your Budgeting</strong> (the "Application" or "Licensed Application"), which includes any updates, upgrades, or supplements to the Application provided by the Developer.</p>
+    <p>Both you and the Developer acknowledge that this EULA is concluded between you and the Developer only, and not with Apple Inc. ("Apple"). The Developer, not Apple, is solely responsible for the Licensed Application and its content.</p>
+
+    <h2>2. Scope of License</h2>
+    <p>The Developer grants you a limited, non-exclusive, non-transferable, revocable license to:</p>
+    <ul>
+        <li>Download, install, and use the Application on any Apple-branded device that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions;</li>
+        <li>Use the Application for your personal, non-commercial purposes.</li>
+    </ul>
+    <p>This license does not allow you to use the Application on any device that you do not own or control, and you may not distribute or make the Application available over a network where it could be used by multiple devices at the same time.</p>
+
+    <h2>3. License Restrictions</h2>
+    <p>You shall not:</p>
+    <ul>
+        <li>Copy, modify, adapt, translate, reverse engineer, decompile, disassemble, or create derivative works based on the Application;</li>
+        <li>Rent, lease, lend, sell, redistribute, or sublicense the Application;</li>
+        <li>Remove, circumvent, disable, or otherwise interfere with any security features or access controls;</li>
+        <li>Remove, alter, or obscure any proprietary notices (including copyright and trademark notices);</li>
+        <li>Use the Application for any unlawful purpose or in any manner that could damage, disable, overburden, or impair the Application;</li>
+        <li>Use automated systems (bots, scrapers, crawlers) to access the Application.</li>
+    </ul>
+
+    <h2>4. Subscriptions & In-App Purchases</h2>
+    <div class="highlight-box">
+        <h3>4.1 PRO Subscription</h3>
+        <p>The Application offers optional paid subscriptions ("PRO") that provide access to premium features. Available plans include:</p>
+        <ul>
+            <li><strong>Monthly:</strong> Auto-renewing monthly subscription</li>
+        </ul>
+        <p>Current pricing is displayed in your local currency within the Application at the point of purchase.</p>
+
+        <h3>4.2 Payment & Renewal</h3>
+        <p>Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current subscription period. Your account will be charged for renewal within 24 hours prior to the end of the current period at the rate of your selected plan.</p>
+
+        <h3>4.3 Managing Subscriptions</h3>
+        <p>You can manage and cancel your subscriptions by going to your Account Settings on the App Store after purchase. Any unused portion of a free trial period (if offered) will be forfeited when you purchase a subscription.</p>
+
+        <h3>4.4 Refunds</h3>
+        <p>All payments are processed through Apple. Refund requests must be directed to Apple in accordance with their refund policies. The Developer cannot process refunds directly.</p>
+    </div>
+
+    <h2>5. Consent to Use of Data</h2>
+    <p>The Application stores your financial data (budgets, expenses, income records, and categories) <strong>locally on your device</strong>. We do not collect, transmit, or store your personal financial data on external servers.</p>
+    <p>You agree that the Developer may collect and use technical data and related information — including but not limited to technical information about your device, system and application software, and peripherals — that is gathered periodically to facilitate the provision of software updates, product support, and other services (if any) related to the Application.</p>
+    <p>The Developer may use this information to improve its products or to provide services or technologies to you, in a form that does not personally identify you. For full details, see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2>6. Intellectual Property</h2>
+    <p>The Application and all intellectual property rights therein (including but not limited to copyrights, trademarks, trade secrets, patents, and design rights) are and shall remain the exclusive property of the Developer. This EULA does not convey any interest in or to the Application other than the limited license granted above.</p>
+
+    <h2>7. Third-Party Services</h2>
+    <p>The Application may display, include, or make available third-party content or provide links to third-party services (including RevenueCat for subscription management). The Developer is not responsible for examining or evaluating the content or accuracy of third-party materials, and does not warrant and will not have any liability for any third-party materials or services.</p>
+
+    <h2>8. Disclaimer of Warranties</h2>
+    <p>THE LICENSED APPLICATION IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <p>The Developer does not warrant that:</p>
+    <ul>
+        <li>The Application will meet your requirements;</li>
+        <li>The Application will be uninterrupted, timely, secure, or error-free;</li>
+        <li>The results obtained from the use of the Application will be accurate or reliable;</li>
+        <li>Any defects in the Application will be corrected.</li>
+    </ul>
+    <p>The Developer does not provide financial, accounting, or tax advice. The Application is a budgeting and expense-tracking tool only. You are solely responsible for your financial decisions.</p>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
+    <ul>
+        <li>Your access to or use of (or inability to access or use) the Application;</li>
+        <li>Any conduct or content of any third party;</li>
+        <li>Unauthorized access, use, or alteration of your data;</li>
+        <li>Any financial decisions made based on information presented in the Application.</li>
+    </ul>
+    <p>The Developer's total aggregate liability shall not exceed the amount you have paid to the Developer in the twelve (12) months preceding the claim.</p>
+
+    <h2>10. Termination</h2>
+    <p>This EULA is effective until terminated. Your rights under this EULA will terminate automatically without notice if you fail to comply with any of its terms. Upon termination:</p>
+    <ul>
+        <li>You must cease all use of the Application;</li>
+        <li>You must destroy all copies of the Application in your possession;</li>
+        <li>Your active subscriptions will remain governed by Apple's subscription management policies;</li>
+        <li>Sections 6, 8, 9, and 11 shall survive termination.</li>
+    </ul>
+
+    <h2>11. Governing Law</h2>
+    <p>This EULA shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria, without regard to conflict of law principles. However, you retain any mandatory consumer protection rights granted by the laws of your country of residence that cannot be waived by contract.</p>
+    <p>Any dispute arising under this Agreement shall first be attempted to be resolved through good-faith negotiation within 30 days. If unresolved, either party may pursue resolution through the competent courts of the Developer's jurisdiction or, where required by local law, the courts of your country of residence.</p>
+
+    <h2>12. Apple-Specific Terms</h2>
+    <div class="highlight-box">
+        <p>Both you and the Developer acknowledge and agree that:</p>
+        <ul>
+            <li>Apple has no obligation to furnish any maintenance and support services with respect to the Licensed Application;</li>
+            <li>Apple is not responsible for addressing any claims by you or any third party relating to the Licensed Application, including product liability claims, any claim that the Application fails to conform to any applicable legal or regulatory requirement, and claims arising under consumer protection or similar legislation;</li>
+            <li>In the event of any failure of the Application to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any). To the maximum extent permitted by applicable law, Apple will have no other warranty obligation with respect to the Licensed Application;</li>
+            <li>Apple is not responsible for the investigation, defense, settlement, and discharge of any third-party intellectual property infringement claim;</li>
+            <li>Apple and its subsidiaries are third-party beneficiaries of this EULA, and upon your acceptance, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.</li>
+        </ul>
+    </div>
+
+    <h2>13. Changes to This EULA</h2>
+    <p>The Developer reserves the right to modify this EULA at any time. Changes will be posted within the Application or on our website with an updated "Last Updated" date. Your continued use of the Application after any such changes constitutes your acceptance of the new EULA.</p>
+
+    <h2>14. Severability</h2>
+    <p>If any provision of this EULA is held to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions shall remain in full force and effect.</p>
+
+    <h2>15. Entire Agreement</h2>
+    <p>This EULA, together with our <a href="terms.html">Terms of Use</a> and <a href="privacy.html">Privacy Policy</a>, constitutes the entire agreement between you and the Developer regarding the use of the Licensed Application and supersedes all prior agreements.</p>
+
+    <h2>16. Contact Information</h2>
+    <div class="highlight-box">
+        <p>If you have any questions about this EULA, please contact the Developer:</p>
+        <p><strong>Developer:</strong> Peter Omirin<br>
+        <strong>Email:</strong> omirinpeter.a@gmail.com<br>
+        <strong>Application:</strong> Your Budgeting – Budget & Expense Tracker</p>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 omirin peter. All rights reserved.</p>
+    <p><a href="terms.html">Terms of Use</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="eula.html">EULA</a></p>
+</div>
+
 </body>
 </html>
